@@ -8,6 +8,9 @@ import SuccessDialog from "./SuccessDialog";
 import FailureDialog from "./FailureDialog";
 import { evaluateGuess, type LetterResult } from "../lib/wordle";
 import { isValidWord } from "../lib/words";
+import applauseSfx from "../assets/applause.mp3";
+
+const preloadedApplause = new Audio(applauseSfx);
 
 const MAX_GUESSES = 6;
 
@@ -106,6 +109,8 @@ export default function Wordle({ targetWord }: WordleProps) {
         setBounceRow(newGuesses.length - 1);
         setWon(true);
         setGameOver(true);
+        preloadedApplause.currentTime = 0;
+        preloadedApplause.play();
       }, revealDuration);
       // Show success dialog after bounce animation finishes
       setTimeout(() => {
