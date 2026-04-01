@@ -5,6 +5,7 @@ import Keyboard from "./Keyboard";
 import Header from "./Header";
 import Toast from "./Toast";
 import SuccessDialog from "./SuccessDialog";
+import FailureDialog from "./FailureDialog";
 import { evaluateGuess, type LetterResult } from "../lib/wordle";
 import { isValidWord } from "../lib/words";
 
@@ -31,6 +32,25 @@ export default function Wordle({ targetWord }: WordleProps) {
   const [revealedCount, setRevealedCount] = useState(0);
   const revealingRef = useRef(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showFailure, setShowFailure] = useState(false);
+  const [gameKey, setGameKey] = useState(0);
+
+  const handleRetry = useCallback(() => {
+    setGuesses([]);
+    setResults([]);
+    setCurrentGuess("");
+    setGameOver(false);
+    setWon(false);
+    setToast(null);
+    setShakeRow(-1);
+    setRevealRow(-1);
+    setBounceRow(-1);
+    setRevealedCount(0);
+    revealingRef.current = false;
+    setShowSuccess(false);
+    setShowFailure(false);
+    setGameKey((k) => k + 1);
+  }, []);
 
   const showToast = useCallback((msg: string, duration = 1500) => {
     setToast(msg);
@@ -94,8 +114,10 @@ export default function Wordle({ targetWord }: WordleProps) {
     } else if (isLoss) {
       setTimeout(() => {
         setGameOver(true);
-        showToast(word, 3000);
       }, revealDuration);
+      setTimeout(() => {
+        setShowFailure(true);
+      }, revealDuration + 500);
     }
   }, [currentGuess, guesses, results, word, wordLength, showToast]);
 
@@ -156,6 +178,7 @@ export default function Wordle({ targetWord }: WordleProps) {
       <div className="flex flex-col items-center justify-between flex-1 overflow-hidden">
         <div className="flex items-center justify-center flex-1 w-full">
           <Grid
+            key={gameKey}
             guesses={guesses}
             results={results}
             currentGuess={currentGuess}
@@ -175,6 +198,11 @@ export default function Wordle({ targetWord }: WordleProps) {
         onOpenChange={setShowSuccess}
         guessCount={guesses.length}
         onNext={() => navigate("/connections")}
+      />
+
+      <FailureDialog
+        isOpen={showFailure}
+        onRetry={handleRetry}
       />
     </>
   );

@@ -25,6 +25,7 @@ export default function Connections() {
   const [shrinkingWords, setShrinkingWords] = useState<string[]>([]);
   const [animating, setAnimating] = useState(false);
   const [previousGuesses, setPreviousGuesses] = useState<string[]>([]);
+  const [gameKey, setGameKey] = useState(0);
 
   const showToast = useCallback((msg: string, duration = 1500) => {
     setToast(msg);
@@ -44,6 +45,22 @@ export default function Connections() {
     },
     [gameOver, animating]
   );
+
+  const handleRetry = useCallback(() => {
+    setRemainingWords(shuffleWords(PUZZLE.groups.flatMap((g) => g.words)));
+    setSelectedWords([]);
+    setSolvedGroups([]);
+    setMistakesRemaining(4);
+    setGameOver(false);
+    setWon(false);
+    setToast(null);
+    setShakeSelected(false);
+    setBouncingWords([]);
+    setShrinkingWords([]);
+    setAnimating(false);
+    setPreviousGuesses([]);
+    setGameKey((k) => k + 1);
+  }, []);
 
   const handleShuffle = useCallback(() => {
     setRemainingWords((prev) => shuffleWords(prev));
@@ -110,13 +127,7 @@ export default function Connections() {
       setMistakesRemaining(newMistakes);
 
       if (newMistakes === 0) {
-        // Reveal all remaining groups after shake
         setTimeout(() => {
-          const unsolved = PUZZLE.groups.filter(
-            (g) => !solvedGroups.some((s) => s.category === g.category)
-          );
-          setSolvedGroups([...solvedGroups, ...unsolved]);
-          setRemainingWords([]);
           setGameOver(true);
         }, 800);
       }
@@ -136,6 +147,7 @@ export default function Connections() {
         {/* Remaining word grid */}
         {remainingWords.length > 0 && (
           <ConnectionsGrid
+            key={gameKey}
             words={remainingWords}
             selectedWords={selectedWords}
             onToggle={handleToggle}
@@ -183,6 +195,7 @@ export default function Connections() {
         isOpen={gameOver}
         won={won}
         solvedGroups={solvedGroups}
+        onRetry={handleRetry}
       />
     </>
   );
