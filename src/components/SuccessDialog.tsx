@@ -34,7 +34,7 @@ export default function SuccessDialog({
         <Modal.Container placement="center" size="sm">
           <Modal.Dialog className="bg-white rounded-2xl shadow-2xl p-0 overflow-hidden border-2 border-[#e8d5f0]">
             {/* Easter egg pattern top bar */}
-            <div className="h-3 w-full bg-gradient-to-r from-[#f6c443] via-[#77c572] to-[#c9a3e0]" />
+            <div className="h-3 w-full bg-gradient-to-r from-[#f6c443] via-[#77c572] to-[#b07fd0]" />
 
             <div className="flex flex-col items-center px-8 pt-6 pb-8">
               {/* Bunny image */}
@@ -57,7 +57,7 @@ export default function SuccessDialog({
 
               {/* Egg divider */}
               <div className="flex gap-2 my-4">
-                {["#f6c443", "#c9a3e0", "#5aad55", "#f6c443", "#c9a3e0"].map(
+                {["#f6c443", "#b07fd0", "#5aad55", "#f6c443", "#b07fd0"].map(
                   (color, i) => (
                     <div
                       key={i}

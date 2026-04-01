@@ -8,7 +8,7 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/wordle" replace />} />
-        <Route path="/wordle" element={<Wordle targetWord="BUNNY" />} />
+        <Route path="/wordle" element={<Wordle targetWord="PEEPS" />} />
         <Route path="/connections" element={<Connections />} />
       </Route>
     </Routes>

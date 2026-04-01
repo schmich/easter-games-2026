@@ -4,7 +4,7 @@ const DIFFICULTY_COLORS: Record<number, { bg: string; text: string }> = {
   0: { bg: "#f6c443", text: "#1a1a2e" },
   1: { bg: "#77c572", text: "#ffffff" },
   2: { bg: "#7eb8da", text: "#ffffff" },
-  3: { bg: "#c9a3e0", text: "#ffffff" },
+  3: { bg: "#b07fd0", text: "#ffffff" },
 };
 
 interface SolvedGroupProps {

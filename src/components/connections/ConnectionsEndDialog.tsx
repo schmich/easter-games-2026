@@ -5,7 +5,7 @@ const DIFFICULTY_COLORS: Record<number, { bg: string; text: string }> = {
   0: { bg: "#f6c443", text: "#1a1a2e" },
   1: { bg: "#77c572", text: "#ffffff" },
   2: { bg: "#7eb8da", text: "#ffffff" },
-  3: { bg: "#c9a3e0", text: "#ffffff" },
+  3: { bg: "#b07fd0", text: "#ffffff" },
 };
 
 interface ConnectionsEndDialogProps {
@@ -33,7 +33,7 @@ export default function ConnectionsEndDialog({
         <Modal.Container placement="center" size="sm">
           <Modal.Dialog className="bg-white rounded-2xl shadow-2xl p-0 overflow-hidden border-2 border-[#e8d5f0]">
             {/* Easter egg pattern top bar */}
-            <div className="h-3 w-full bg-gradient-to-r from-[#f6c443] via-[#77c572] to-[#c9a3e0]" />
+            <div className="h-3 w-full bg-gradient-to-r from-[#f6c443] via-[#77c572] to-[#b07fd0]" />
 
             <div className="flex flex-col items-center px-8 pt-6 pb-8">
               {/* Bunny image */}
@@ -64,10 +64,10 @@ export default function ConnectionsEndDialog({
                           color: colors.text,
                         }}
                       >
-                        <p className="text-xs font-bold uppercase">
+                        <p className="text-sm uppercase">
                           {group.category}
                         </p>
-                        <p className="text-[0.65rem] mt-0.5 opacity-80">
+                        <p className="text-xs mt-0.5 opacity-80">
                           {group.words.join(", ")}
                         </p>
                       </div>
@@ -77,7 +77,7 @@ export default function ConnectionsEndDialog({
 
               {/* Egg divider */}
               <div className="flex gap-2 my-2">
-                {["#f6c443", "#77c572", "#7eb8da", "#c9a3e0"].map(
+                {["#f6c443", "#77c572", "#7eb8da", "#b07fd0"].map(
                   (color, i) => (
                     <div
                       key={i}
