@@ -11,7 +11,7 @@ export interface ConnectionsPuzzle {
 export const PUZZLE: ConnectionsPuzzle = {
   groups: [
     {
-      category: "Egg ___",
+      category: "Egg ____",
       words: ["NOG", "SHELL", "HEAD", "PLANT"],
       difficulty: 0,
     },
@@ -26,7 +26,7 @@ export const PUZZLE: ConnectionsPuzzle = {
       difficulty: 2,
     },
     {
-      category: "___ Basket",
+      category: "____ Basket",
       words: ["BREAD", "LAUNDRY", "WASTE", "PICNIC"],
       difficulty: 3,
     },

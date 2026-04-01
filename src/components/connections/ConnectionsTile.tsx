@@ -29,7 +29,7 @@ export default function ConnectionsTile({
         ${shrink ? "animate-shrink-away" : ""}
       `}
       style={{
-        fontSize: word.length > 7 ? "0.85rem" : "1rem",
+        fontSize: word.length > 7 ? "1rem" : "1.15rem",
         animationDelay: bounce ? `${bounceDelay}ms` : undefined,
         animationFillMode: bounce || shrink ? "both" : undefined,
       }}

@@ -43,7 +43,7 @@ export default function Keyboard({ onKey, letterStates, disabled }: KeyboardProp
                   flex items-center justify-center rounded-[4px] border border-[#d3d6da]
                   h-[58px] select-none
                   ${disabled ? "cursor-default" : "cursor-pointer active:opacity-70"}
-                  ${isWide ? "text-sm px-1 flex-[1.5]" : "text-[1.1rem] flex-1"}
+                  ${isWide ? "text-base px-1 flex-[1.5]" : "text-[1.3rem] flex-1"}
                 `}
                 style={{
                   backgroundColor: bg,
