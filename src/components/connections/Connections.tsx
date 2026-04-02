@@ -198,6 +198,7 @@ export default function Connections() {
         isOpen={gameOver}
         won={won}
         solvedGroups={solvedGroups}
+        mistakesRemaining={mistakesRemaining}
         onRetry={handleRetry}
       />
     </>

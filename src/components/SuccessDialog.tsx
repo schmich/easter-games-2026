@@ -17,12 +17,12 @@ export default function SuccessDialog({
   const state = useOverlayState({ isOpen, onOpenChange });
 
   const messages = [
-    "Genius",
-    "Magnificent",
-    "Impressive",
-    "Splendid",
-    "Great",
-    "Phew",
+    "Egg-straordinary!",
+    "Un-bunny-lievable!",
+    "Egg-cellent!",
+    "Some-bunny's smart!",
+    "Not bad, little egg",
+    "Barely hatched it",
   ];
   const message = messages[guessCount - 1] || "Nice!";
 
@@ -52,7 +52,7 @@ export default function SuccessDialog({
                 className="text-[#6b4c8a] text-2xl mb-1"
   
               >
-                {message}!
+                {message}
               </p>
               <p className="text-[#6b4c8a]/70 text-lg mb-1">
                 Solved in {guessCount} {guessCount === 1 ? "guess" : "guesses"}

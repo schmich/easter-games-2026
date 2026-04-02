@@ -13,6 +13,7 @@ interface ConnectionsEndDialogProps {
   isOpen: boolean;
   won: boolean;
   solvedGroups: ConnectionsGroup[];
+  mistakesRemaining: number;
   onRetry: () => void;
 }
 
@@ -20,6 +21,7 @@ export default function ConnectionsEndDialog({
   isOpen,
   won,
   solvedGroups,
+  mistakesRemaining,
   onRetry,
 }: ConnectionsEndDialogProps) {
   const state = useOverlayState({
@@ -50,7 +52,15 @@ export default function ConnectionsEndDialog({
 
               {/* Result message */}
               <p className="text-[#6b4c8a] text-2xl mb-4 text-center">
-                {won ? "Egg-cellent!" : <>You have failed,<br />but The Eggfather is merciful</>}
+                {won
+                  ? [
+                      "Barely hatched it",
+                      "Not bad, little egg",
+                      "Some-bunny's smart!",
+                      "Un-bunny-lievable!",
+                      "Egg-straordinary!",
+                    ][mistakesRemaining]
+                  : <>You cracked under pressure,<br />but The Eggfather is merciful</>}
               </p>
 
               {won ? (

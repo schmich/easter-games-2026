@@ -34,7 +34,7 @@ export default function FailureDialog({ isOpen, onRetry }: FailureDialogProps) {
               <div className="w-44 h-[20px] rounded-[50%] bg-radial-[at_top] from-[#6b4c8a]/20 via-[#6b4c8a]/10 to-transparent blur-[3px] mb-3" />
 
               <p className="text-[#6b4c8a] text-2xl mb-6 text-center">
-                You have failed,<br />but The Eggfather is merciful
+                You cracked under pressure,<br />but The Eggfather is merciful
               </p>
 
               <Button
