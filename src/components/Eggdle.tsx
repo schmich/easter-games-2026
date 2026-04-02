@@ -7,17 +7,17 @@ import Toast from "./Toast";
 import SuccessDialog from "./SuccessDialog";
 import FailureDialog from "./FailureDialog";
 import GameIntroDialog from "./GameIntroDialog";
-import { evaluateGuess, type LetterResult } from "../lib/wordle";
+import { evaluateGuess, type LetterResult } from "../lib/eggdle";
 import { isValidWord } from "../lib/words";
 import { audio, images } from "../assets";
 
 const MAX_GUESSES = 6;
 
-interface WordleProps {
+interface EggdleProps {
   targetWord: string;
 }
 
-export default function Wordle({ targetWord }: WordleProps) {
+export default function Eggdle({ targetWord }: EggdleProps) {
   const navigate = useNavigate();
   const word = targetWord.toUpperCase();
   const wordLength = word.length;

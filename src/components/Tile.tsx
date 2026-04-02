@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { type LetterResult } from "../lib/wordle";
+import { type LetterResult } from "../lib/eggdle";
 
 interface TileProps {
   letter: string;

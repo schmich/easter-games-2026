@@ -1,7 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Intro from "./components/Intro";
-import Wordle from "./components/Wordle";
+import Eggdle from "./components/Eggdle";
 import Connections from "./components/connections/Connections";
 
 export default function App() {
@@ -9,8 +9,9 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Intro />} />
-        <Route path="/wordle" element={<Wordle targetWord="PEEPS" />} />
+        <Route path="/eggdle" element={<Eggdle targetWord="PEEPS" />} />
         <Route path="/connections" element={<Connections />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
   );
