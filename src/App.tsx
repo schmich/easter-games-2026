@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Intro from "./components/Intro";
-import Eggdle from "./components/Eggdle";
+import Eggdle from "./components/eggdle/Eggdle";
 import Conneggtions from "./components/conneggtions/Conneggtions";
 
 export default function App() {

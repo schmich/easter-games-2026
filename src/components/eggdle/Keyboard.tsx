@@ -1,4 +1,4 @@
-import { type LetterResult } from "../lib/eggdle";
+import { type LetterResult } from "../../lib/eggdle";
 
 interface KeyboardProps {
   onKey: (key: string) => void;

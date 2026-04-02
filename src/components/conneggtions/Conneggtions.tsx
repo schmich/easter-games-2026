@@ -2,10 +2,10 @@ import { useState, useCallback } from "react";
 import { Button } from "@heroui/react";
 import Header from "../Header";
 import Toast from "../Toast";
-import ConneggtionsGrid from "./ConneggtionsGrid";
+import Grid from "./Grid";
 import SolvedGroup from "./SolvedGroup";
 import MistakeIndicator from "./MistakeIndicator";
-import ConneggtionsEndDialog from "./ConneggtionsEndDialog";
+import EndDialog from "./EndDialog";
 import { PUZZLE } from "../../lib/conneggtionsData";
 import type { ConneggtionsGroup } from "../../lib/conneggtionsData";
 import { checkGuess, shuffleWords } from "../../lib/conneggtions";
@@ -159,7 +159,7 @@ export default function Conneggtions() {
 
         {/* Remaining word grid */}
         {remainingWords.length > 0 && (
-          <ConneggtionsGrid
+          <Grid
             key={gameKey}
             words={remainingWords}
             selectedWords={selectedWords}
@@ -204,7 +204,7 @@ export default function Conneggtions() {
         )}
       </div>
 
-      <ConneggtionsEndDialog
+      <EndDialog
         isOpen={gameOver}
         won={won}
         solvedGroups={solvedGroups}

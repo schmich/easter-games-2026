@@ -1,6 +1,6 @@
-import ConneggtionsTile from "./ConneggtionsTile";
+import Tile from "./Tile";
 
-interface ConneggtionsGridProps {
+interface GridProps {
   words: string[];
   selectedWords: string[];
   onToggle: (word: string) => void;
@@ -9,20 +9,20 @@ interface ConneggtionsGridProps {
   shrinkingWords: string[];
 }
 
-export default function ConneggtionsGrid({
+export default function Grid({
   words,
   selectedWords,
   onToggle,
   shake,
   bouncingWords,
   shrinkingWords,
-}: ConneggtionsGridProps) {
+}: GridProps) {
   return (
     <div className="grid grid-cols-4 gap-1.5 w-full max-w-[480px]">
       {words.map((word) => {
         const bounceIndex = bouncingWords.indexOf(word);
         return (
-          <ConneggtionsTile
+          <Tile
             key={word}
             word={word}
             isSelected={selectedWords.includes(word)}

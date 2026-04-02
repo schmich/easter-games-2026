@@ -2,14 +2,14 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "./Grid";
 import Keyboard from "./Keyboard";
-import Header from "./Header";
-import Toast from "./Toast";
+import Header from "../Header";
+import Toast from "../Toast";
 import SuccessDialog from "./SuccessDialog";
 import FailureDialog from "./FailureDialog";
 import GameIntroDialog from "./GameIntroDialog";
-import { evaluateGuess, type LetterResult } from "../lib/eggdle";
-import { isValidWord } from "../lib/words";
-import { audio, images } from "../assets";
+import { evaluateGuess, type LetterResult } from "../../lib/eggdle";
+import { isValidWord } from "../../lib/words";
+import { audio, images } from "../../assets";
 
 const MAX_GUESSES = 6;
 

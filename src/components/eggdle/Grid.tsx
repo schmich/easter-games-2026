@@ -1,4 +1,4 @@
-import { type LetterResult } from "../lib/eggdle";
+import { type LetterResult } from "../../lib/eggdle";
 import Tile from "./Tile";
 
 interface GridProps {

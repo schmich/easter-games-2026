@@ -1,5 +1,5 @@
 import { Modal, Button, useOverlayState } from "@heroui/react";
-import { images } from "../assets";
+import { images } from "../../assets";
 
 interface FailureDialogProps {
   isOpen: boolean;

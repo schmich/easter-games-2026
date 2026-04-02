@@ -1,4 +1,4 @@
-interface ConneggtionsTileProps {
+interface TileProps {
   word: string;
   isSelected: boolean;
   onToggle: () => void;
@@ -8,7 +8,7 @@ interface ConneggtionsTileProps {
   shrink: boolean;
 }
 
-export default function ConneggtionsTile({
+export default function Tile({
   word,
   isSelected,
   onToggle,
@@ -16,7 +16,7 @@ export default function ConneggtionsTile({
   bounce,
   bounceDelay,
   shrink,
-}: ConneggtionsTileProps) {
+}: TileProps) {
   return (
     <button
       onClick={onToggle}

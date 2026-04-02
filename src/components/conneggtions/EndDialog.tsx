@@ -9,7 +9,7 @@ const DIFFICULTY_COLORS: Record<number, { bg: string; text: string }> = {
   3: { bg: "#b07fd0", text: "#ffffff" },
 };
 
-interface ConneggtionsEndDialogProps {
+interface EndDialogProps {
   isOpen: boolean;
   won: boolean;
   solvedGroups: ConneggtionsGroup[];
@@ -17,13 +17,13 @@ interface ConneggtionsEndDialogProps {
   onRetry: () => void;
 }
 
-export default function ConneggtionsEndDialog({
+export default function EndDialog({
   isOpen,
   won,
   solvedGroups,
   mistakesRemaining,
   onRetry,
-}: ConneggtionsEndDialogProps) {
+}: EndDialogProps) {
   const state = useOverlayState({
     isOpen,
     onOpenChange: () => {},
