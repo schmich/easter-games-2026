@@ -10,7 +10,7 @@ import GameIntroDialog from "../GameIntroDialog";
 import { PUZZLE } from "../../lib/conneggtionsData";
 import type { ConneggtionsGroup } from "../../lib/conneggtionsData";
 import { checkGuess, shuffleWords } from "../../lib/conneggtions";
-import { audio, images } from "../../assets";
+import { images } from "../../assets";
 import { hasSeenIntro, markIntroSeen } from "../../lib/introState";
 
 export default function Conneggtions() {
@@ -118,8 +118,6 @@ export default function Conneggtions() {
         if (newSolved.length === 4) {
           setWon(true);
           setGameOver(true);
-          audio.applause.currentTime = 0;
-          audio.applause.play();
         }
       }, 900);
     } else {

@@ -37,6 +37,8 @@ export default function Eggdle({ targetWord }: EggdleProps) {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
   const [gameKey, setGameKey] = useState(0);
+  const [audioProgress, setAudioProgress] = useState(1);
+  const audioRafRef = useRef(0);
   const [showIntro, setShowIntro] = useState(
     () => !hasSeenIntro("eggdle")
   );
@@ -112,12 +114,25 @@ export default function Eggdle({ targetWord }: EggdleProps) {
         setBounceRow(newGuesses.length - 1);
         setWon(true);
         setGameOver(true);
-        audio.applause.currentTime = 0;
-        audio.applause.play();
       }, revealDuration);
       // Show success dialog after bounce animation finishes
       setTimeout(() => {
         setShowSuccess(true);
+        setAudioProgress(0);
+        audio.eggdleWin.currentTime = 0;
+        audio.eggdleWin.play();
+        const updateProgress = () => {
+          const { currentTime, duration } = audio.eggdleWin;
+          if (duration > 0) {
+            setAudioProgress(currentTime / duration);
+          }
+          if (!audio.eggdleWin.ended) {
+            audioRafRef.current = requestAnimationFrame(updateProgress);
+          } else {
+            setAudioProgress(1);
+          }
+        };
+        audioRafRef.current = requestAnimationFrame(updateProgress);
       }, revealDuration + 1200);
     } else if (isLoss) {
       setTimeout(() => {
@@ -216,6 +231,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
         onOpenChange={setShowSuccess}
         guessCount={guesses.length}
         onNext={() => navigate("/conneggtions")}
+        audioProgress={audioProgress}
       />
 
       <FailureDialog

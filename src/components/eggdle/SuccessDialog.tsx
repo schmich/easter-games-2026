@@ -1,4 +1,4 @@
-import { Modal, Button, useOverlayState } from "@heroui/react";
+import { Modal, useOverlayState } from "@heroui/react";
 import { images } from "../../assets";
 
 interface SuccessDialogProps {
@@ -6,6 +6,7 @@ interface SuccessDialogProps {
   onOpenChange: (isOpen: boolean) => void;
   guessCount: number;
   onNext: () => void;
+  audioProgress?: number;
 }
 
 export default function SuccessDialog({
@@ -13,8 +14,10 @@ export default function SuccessDialog({
   onOpenChange,
   guessCount,
   onNext,
+  audioProgress = 1,
 }: SuccessDialogProps) {
   const state = useOverlayState({ isOpen, onOpenChange });
+  const ready = audioProgress >= 1;
 
   const messages = [
     "Egg-straordinary!",
@@ -47,10 +50,7 @@ export default function SuccessDialog({
               <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#6b4c8a] to-transparent mb-3" />
 
               {/* Success message */}
-              <p
-                className="text-[#6b4c8a] text-2xl mb-1"
-  
-              >
+              <p className="text-[#6b4c8a] text-2xl mb-1">
                 {message}
               </p>
               <p className="text-[#6b4c8a] text-lg mb-1">
@@ -70,20 +70,29 @@ export default function SuccessDialog({
                 )}
               </div>
 
-              <p
-                className="text-[#6b4c8a] text-xl mb-6"
-  
-              >
+              <p className="text-[#6b4c8a] text-xl mb-6">
                 Ready for the next challenge?
               </p>
 
-              <Button
-                onPress={onNext}
-                className="bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-transform cursor-pointer"
-  
+              <button
+                onClick={ready ? onNext : undefined}
+                className={`relative overflow-hidden text-white text-xl px-8 py-3 rounded-full shadow-lg transition-all ${
+                  ready
+                    ? "hover:scale-105 cursor-pointer"
+                    : "cursor-default"
+                }`}
+                style={{ backgroundColor: "#d3d6da" }}
               >
-                Bring It On 🐰
-              </Button>
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: "linear-gradient(to right, #5aad55, #77c572)",
+                    width: `${audioProgress * 100}%`,
+                    transition: "width 0.1s linear",
+                  }}
+                />
+                <span className="relative z-10">Bring It On 🐰</span>
+              </button>
             </div>
           </Modal.Dialog>
         </Modal.Container>

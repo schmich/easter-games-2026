@@ -1,10 +1,19 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, useOverlayState } from "@heroui/react";
-import { images } from "../assets";
+import { images, audio } from "../assets";
 
 export default function Intro() {
   const navigate = useNavigate();
   const state = useOverlayState({ isOpen: true, onOpenChange: () => {} });
+
+  useEffect(() => {
+    audio.introMusic.currentTime = 0;
+    audio.introMusic.play();
+    return () => {
+      audio.introMusic.pause();
+    };
+  }, []);
 
   return (
     <Modal state={state}>

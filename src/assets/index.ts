@@ -9,7 +9,8 @@ import eggfatherWin from "./eggfather-win.webp";
 import eggfatherLose from "./eggfather-lose.webp";
 
 // Audio
-import applause from "./applause.mp3";
+import eggdleWin from "./eggfather-eggdle-win.mp3";
+import introMusic from "./intro-music.mp3";
 
 export const images = {
   bunny,
@@ -22,14 +23,36 @@ export const images = {
   eggfatherLose,
 } as const;
 
-// Preload all images on module load — keep references to prevent GC
+// Preload all images and audio — returns a promise that resolves when all are loaded
+function preloadImage(src: string): Promise<void> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => resolve(); // don't block on errors
+    img.src = src;
+    preloadedImages.push(img);
+  });
+}
+
+function preloadAudio(audioEl: HTMLAudioElement): Promise<void> {
+  return new Promise((resolve) => {
+    if (audioEl.readyState >= 3) {
+      resolve();
+      return;
+    }
+    audioEl.addEventListener("canplaythrough", () => resolve(), { once: true });
+    audioEl.addEventListener("error", () => resolve(), { once: true });
+  });
+}
+
 const preloadedImages: HTMLImageElement[] = [];
-Object.values(images).forEach((src) => {
-  const img = new Image();
-  img.src = src;
-  preloadedImages.push(img);
-});
 
 export const audio = {
-  applause: new Audio(applause),
+  eggdleWin: new Audio(eggdleWin),
+  introMusic: new Audio(introMusic),
 } as const;
+
+export const assetsReady: Promise<void> = Promise.all([
+  ...Object.values(images).map(preloadImage),
+  ...Object.values(audio).map(preloadAudio),
+]).then(() => {});
