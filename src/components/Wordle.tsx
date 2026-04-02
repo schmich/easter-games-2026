@@ -6,6 +6,7 @@ import Header from "./Header";
 import Toast from "./Toast";
 import SuccessDialog from "./SuccessDialog";
 import FailureDialog from "./FailureDialog";
+import GameIntroDialog from "./GameIntroDialog";
 import { evaluateGuess, type LetterResult } from "../lib/wordle";
 import { isValidWord } from "../lib/words";
 import { audio, images } from "../assets";
@@ -35,6 +36,9 @@ export default function Wordle({ targetWord }: WordleProps) {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
   const [gameKey, setGameKey] = useState(0);
+  const [showIntro, setShowIntro] = useState(
+    () => !localStorage.getItem("eggdle-intro-seen")
+  );
 
   const handleRetry = useCallback(() => {
     setGuesses([]);
@@ -216,6 +220,17 @@ export default function Wordle({ targetWord }: WordleProps) {
       <FailureDialog
         isOpen={showFailure}
         onRetry={handleRetry}
+      />
+
+      <GameIntroDialog
+        isOpen={showIntro}
+        onClose={() => {
+          localStorage.setItem("eggdle-intro-seen", "1");
+          setShowIntro(false);
+        }}
+        image={images.eggfather}
+        title="Eggdle"
+        description="Little do people know, The Eggfather is quite the wordsmith. See if you can crack his secret word."
       />
     </>
   );
