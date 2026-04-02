@@ -6,7 +6,7 @@ import Header from "../Header";
 import Toast from "../Toast";
 import SuccessDialog from "./SuccessDialog";
 import FailureDialog from "./FailureDialog";
-import GameIntroDialog from "./GameIntroDialog";
+import GameIntroDialog from "../GameIntroDialog";
 import { evaluateGuess, type LetterResult } from "../../lib/eggdle";
 import { isValidWord } from "../../lib/words";
 import { audio, images } from "../../assets";

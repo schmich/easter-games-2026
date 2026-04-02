@@ -6,6 +6,7 @@ import Grid from "./Grid";
 import SolvedGroup from "./SolvedGroup";
 import MistakeIndicator from "./MistakeIndicator";
 import EndDialog from "./EndDialog";
+import GameIntroDialog from "../GameIntroDialog";
 import { PUZZLE } from "../../lib/conneggtionsData";
 import type { ConneggtionsGroup } from "../../lib/conneggtionsData";
 import { checkGuess, shuffleWords } from "../../lib/conneggtions";
@@ -27,6 +28,9 @@ export default function Conneggtions() {
   const [animating, setAnimating] = useState(false);
   const [previousGuesses, setPreviousGuesses] = useState<string[]>([]);
   const [gameKey, setGameKey] = useState(0);
+  const [showIntro, setShowIntro] = useState(
+    () => !localStorage.getItem("conneggtions-intro-seen")
+  );
 
   const showToast = useCallback((msg: string, duration = 1500) => {
     setToast(msg);
@@ -210,6 +214,17 @@ export default function Conneggtions() {
         solvedGroups={solvedGroups}
         mistakesRemaining={mistakesRemaining}
         onRetry={handleRetry}
+      />
+
+      <GameIntroDialog
+        isOpen={showIntro}
+        onClose={() => {
+          localStorage.setItem("conneggtions-intro-seen", "1");
+          setShowIntro(false);
+        }}
+        image={images.eggfather}
+        title="Conneggtions"
+        description="The Eggfather is also a clever thinker. See if you can figure out which eggs go together into which baskets."
       />
     </>
   );
