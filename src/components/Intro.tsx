@@ -31,7 +31,7 @@ export default function Intro() {
                 Easter Games 2026
               </h1>
 
-              <p className="text-[#1a1a2e]/70 text-base text-center mb-6 leading-relaxed">
+              <p className="text-[#6b4c8a] text-lg text-center mb-6 leading-relaxed">
                 You are about to embark on a series of high-stakes games. Stay sharp, stay clever, and whatever you do, don't disappoint The Eggfather.
               </p>
 

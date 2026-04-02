@@ -54,7 +54,7 @@ export default function SuccessDialog({
               >
                 {message}
               </p>
-              <p className="text-[#6b4c8a]/70 text-lg mb-1">
+              <p className="text-[#6b4c8a] text-lg mb-1">
                 Solved in {guessCount} {guessCount === 1 ? "guess" : "guesses"}
               </p>
 
@@ -72,7 +72,7 @@ export default function SuccessDialog({
               </div>
 
               <p
-                className="text-[#1a1a2e] text-xl mb-6"
+                className="text-[#6b4c8a] text-xl mb-6"
   
               >
                 Ready for the next challenge?

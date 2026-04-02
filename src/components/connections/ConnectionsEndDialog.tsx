@@ -51,7 +51,7 @@ export default function ConnectionsEndDialog({
               <div className="w-44 h-[20px] rounded-[50%] bg-radial-[at_top] from-[#6b4c8a]/20 via-[#6b4c8a]/10 to-transparent blur-[3px] mb-3" />
 
               {/* Result message */}
-              <p className="text-[#6b4c8a] text-2xl mb-4 text-center">
+              <p className="text-[#6b4c8a] text-2xl mb-1 text-center">
                 {won
                   ? [
                       "Barely hatched it",
@@ -60,8 +60,14 @@ export default function ConnectionsEndDialog({
                       "Un-bunny-lievable!",
                       "Egg-straordinary!",
                     ][mistakesRemaining]
-                  : <>You cracked under pressure,<br />but The Eggfather is merciful</>}
+                  : "You cracked under pressure!"}
               </p>
+              {!won && (
+                <p className="text-[#6b4c8a] text-lg mb-4 text-center">
+                  Good thing The Eggfather is merciful
+                </p>
+              )}
+              {won && <div className="mb-3" />}
 
               {won ? (
                 <>
