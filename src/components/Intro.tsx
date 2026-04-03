@@ -1,16 +1,14 @@
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, useOverlayState } from "@heroui/react";
-import { images, audio } from "../assets";
+import { images, audio, startBackgroundMusic } from "../assets";
 
 export default function Intro() {
   const navigate = useNavigate();
   const state = useOverlayState({ isOpen: true, onOpenChange: () => {} });
 
   useEffect(() => {
-    audio.introMusic.currentTime = 0;
-    audio.introMusic.volume = 0.75;
-    audio.introMusic.play();
+    startBackgroundMusic();
     const t = setTimeout(() => {
       audio.bugsyIntro.currentTime = 0;
       audio.bugsyIntro.play();
@@ -23,29 +21,6 @@ export default function Intro() {
     }, 1000);
     return () => clearTimeout(t);
   }, []);
-
-  const handleContinue = useCallback(() => {
-    navigate("/eggdle");
-    const music = audio.introMusic;
-    const duration = 2000;
-    const steps = 40;
-    const interval = duration / steps;
-    let step = 0;
-    const fadeOut = setInterval(() => {
-      step++;
-      const t = step / steps;
-      // Cubic ease-in: volume drops fast then tapers slowly
-      const volume = 0.75 * Math.pow(1 - t, 3);
-      if (step >= steps) {
-        music.volume = 0;
-        music.pause();
-        music.volume = 1;
-        clearInterval(fadeOut);
-      } else {
-        music.volume = Math.max(0, volume);
-      }
-    }, interval);
-  }, [navigate]);
 
   return (
     <Modal state={state}>
@@ -89,7 +64,7 @@ export default function Intro() {
               </div>
 
               <Button
-                onPress={handleContinue}
+                onPress={() => navigate("/eggdle")}
                 className="bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl px-8 py-6 rounded-full shadow-lg hover:scale-105 transition-transform cursor-pointer"
               >
                 Let's Go 🐰

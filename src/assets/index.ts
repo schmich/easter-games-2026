@@ -12,13 +12,14 @@ import bugsyConneggtions from "./bugsy-conneggtions.webp";
 
 // Audio
 import bugsyEggdleWin from "./bugsy-eggdle-win.mp3";
-import introMusic from "./intro-music.mp3";
 import bugsySwingMiss from "./bugsy-swing-miss.mp3";
 import bugsyIntro from "./bugsy-intro.mp3";
 import announcerIntro from "./announcer-intro.mp3";
 import announcerEggdle from "./announcer-eggdle.mp3";
 import announcerConneggtions from "./announcer-conneggtions.mp3";
 import bugsyAintItChief from "./bugsy-aint-it-chief.mp3";
+import bgMusic1 from "./background-music-1.mp3";
+import bgMusic2 from "./background-music-2.mp3";
 
 export const images = {
   bunny,
@@ -59,12 +60,33 @@ const preloadedImages: HTMLImageElement[] = [];
 
 export const audio = {
   bugsyEggdleWin: new Audio(bugsyEggdleWin),
-  introMusic: new Audio(introMusic),
   bugsyIntro: new Audio(bugsyIntro),
   announcerIntro: new Audio(announcerIntro),
   announcerEggdle: new Audio(announcerEggdle),
   announcerConneggtions: new Audio(announcerConneggtions),
 } as const;
+
+// Background music — loops bg-1 then bg-2 continuously
+const bgTracks = [new Audio(bgMusic1), new Audio(bgMusic2)];
+let bgTrackIndex = 0;
+let bgStarted = false;
+
+function playNextBgTrack() {
+  const track = bgTracks[bgTrackIndex % bgTracks.length];
+  track.volume = 0.1;
+  track.currentTime = 0;
+  track.onended = () => {
+    bgTrackIndex++;
+    playNextBgTrack();
+  };
+  track.play();
+}
+
+export function startBackgroundMusic() {
+  if (bgStarted) return;
+  bgStarted = true;
+  playNextBgTrack();
+}
 
 // Failed guess audio set — shuffled, cycles through all
 const failedClips = [
@@ -91,7 +113,7 @@ export function playFailedAudio() {
   clip.play();
 }
 
-const allAudio = [...Object.values(audio), ...failedClips];
+const allAudio = [...Object.values(audio), ...failedClips, ...bgTracks];
 
 export const assetsReady: Promise<void> = Promise.all([
   ...Object.values(images).map(preloadImage),
