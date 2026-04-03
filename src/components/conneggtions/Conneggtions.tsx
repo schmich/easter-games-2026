@@ -10,7 +10,7 @@ import GameIntroDialog from "../GameIntroDialog";
 import { PUZZLE } from "../../lib/conneggtionsData";
 import type { ConneggtionsGroup } from "../../lib/conneggtionsData";
 import { checkGuess, shuffleWords } from "../../lib/conneggtions";
-import { images, audio, playFailedAudio } from "../../assets";
+import { images, audio, playFailedAudio, playClick } from "../../assets";
 import { hasSeenIntro, markIntroSeen } from "../../lib/introState";
 
 export default function Conneggtions() {
@@ -50,9 +50,11 @@ export default function Conneggtions() {
       if (gameOver || animating) return;
       setSelectedWords((prev) => {
         if (prev.includes(word)) {
+          playClick();
           return prev.filter((w) => w !== word);
         }
         if (prev.length >= 4) return prev;
+        playClick();
         return [...prev, word];
       });
     },

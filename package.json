@@ -1,8 +1,9 @@
 {
-  "name": "easter",
+  "name": "2026-easter-games",
   "version": "1.0.0",
-  "description": "Easter Games",
+  "description": "2026 Easter Games",
   "type": "module",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,7 +11,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@heroui/react": "3.0.1",
     "framer-motion": "12.38.0",
