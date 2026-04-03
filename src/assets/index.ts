@@ -7,8 +7,8 @@ import grassBasket from "./grass-basket.webp";
 import bugsy from "./bugsy.webp";
 import bugsyWin from "./bugsy-win.webp";
 import bugsyLose from "./bugsy-lose.webp";
-import bugsyEggdle from "./bugsy-eggdle.webp";
-import bugsyConneggtions from "./bugsy-conneggtions.webp";
+import bugsyEggdleIntro from "./bugsy-eggdle-intro.webp";
+import bugsyConneggtionsIntro from "./bugsy-conneggtions-intro.webp";
 import bugsyEggdleWinImg from "./bugsy-eggdle-win.webp";
 
 // Audio
@@ -33,8 +33,8 @@ export const images = {
   bugsy,
   bugsyWin,
   bugsyLose,
-  bugsyEggdle,
-  bugsyConneggtions,
+  bugsyEggdleIntro,
+  bugsyConneggtionsIntro,
   bugsyEggdleWin: bugsyEggdleWinImg,
 } as const;
 

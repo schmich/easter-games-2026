@@ -268,7 +268,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
           markIntroSeen("eggdle");
           setShowIntro(false);
         }}
-        image={images.bugsyEggdle}
+        image={images.bugsyEggdleIntro}
         title="Eggdle"
         description="Don't let the suit fool you: Bugsy does crossword puzzles in ink. He's chosen a word. You get six guesses. Crack it, or get cracked."
       />

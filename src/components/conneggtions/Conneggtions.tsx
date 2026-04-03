@@ -229,7 +229,7 @@ export default function Conneggtions() {
           markIntroSeen("conneggtions");
           setShowIntro(false);
         }}
-        image={images.bugsyConneggtions}
+        image={images.bugsyConneggtionsIntro}
         title="Conneggtions"
         description="Bugsy likes to scramble things up. 16 words. 4 baskets. Nothing over easy here. Find the conneggtions if you can."
       />
