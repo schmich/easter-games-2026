@@ -41,7 +41,7 @@ export default function FailureDialog({ isOpen, onRetry }: FailureDialogProps) {
 
               <Button
                 onPress={onRetry}
-                className="bg-[#6b4c8a] text-white rounded-full px-8 py-3 text-xl font-medium cursor-pointer hover:bg-[#5a3d78] transition-colors"
+                className="bg-[#6b4c8a] text-white rounded-full px-8 py-6 text-xl font-medium cursor-pointer hover:bg-[#5a3d78] transition-colors"
               >
                 Try Again
               </Button>

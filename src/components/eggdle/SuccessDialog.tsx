@@ -76,7 +76,7 @@ export default function SuccessDialog({
 
               <button
                 onClick={ready ? onNext : undefined}
-                className={`relative overflow-hidden text-white text-xl px-8 py-5 rounded-full shadow-lg transition-all ${
+                className={`relative overflow-hidden text-white text-xl px-8 h-12 rounded-full shadow-lg transition-all ${
                   ready
                     ? "hover:scale-105 cursor-pointer"
                     : "cursor-default"

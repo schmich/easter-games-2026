@@ -43,6 +43,13 @@ export default function Eggdle({ targetWord }: EggdleProps) {
     () => !hasSeenIntro("eggdle")
   );
 
+  useEffect(() => {
+    if (showIntro) {
+      audio.announcerEggdle.currentTime = 0;
+      audio.announcerEggdle.play();
+    }
+  }, [showIntro]);
+
   const handleRetry = useCallback(() => {
     setGuesses([]);
     setResults([]);
@@ -253,7 +260,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
         }}
         image={images.bugsyEggdle}
         title="Eggdle"
-        description="Don't let the suit fool you: Bugsy does crossword puzzles in ink. He's chosen a word. You get six guesses. The family is watching."
+        description="Don't let the suit fool you: Bugsy does crossword puzzles in ink. He's chosen a word. You get six guesses. Crack it, or get cracked."
       />
     </>
   );

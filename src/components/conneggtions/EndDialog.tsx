@@ -110,7 +110,7 @@ export default function EndDialog({
               ) : (
                 <Button
                   onPress={onRetry}
-                  className="bg-[#6b4c8a] text-white rounded-full px-8 py-3 text-xl font-medium cursor-pointer hover:bg-[#5a3d78] transition-colors mt-2"
+                  className="bg-[#6b4c8a] text-white rounded-full px-8 py-6 text-xl font-medium cursor-pointer hover:bg-[#5a3d78] transition-colors mt-2"
                 >
                   Try Again
                 </Button>

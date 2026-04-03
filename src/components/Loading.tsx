@@ -36,7 +36,7 @@ export default function Loading() {
       ) : (
         <button
           onClick={() => navigate("/intro")}
-          className={`bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl px-16 py-5 rounded-full shadow-lg hover:scale-105 transition-all duration-250 cursor-pointer max-w-[90dvw] ${
+          className={`bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl px-16 py-6 rounded-full shadow-lg hover:scale-105 transition-all duration-250 cursor-pointer max-w-[90dvw] ${
             showButton ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
