@@ -127,6 +127,8 @@ export default function Conneggtions() {
         if (newSolved.length === 4) {
           setWon(true);
           setGameOver(true);
+          audio.buggsyConneggtionsWin.currentTime = 0;
+          audio.buggsyConneggtionsWin.play();
         }
       }, 900);
     } else {

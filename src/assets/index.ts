@@ -24,6 +24,7 @@ import announcerIntro from "./announcer-intro.mp3";
 import announcerEggdle from "./announcer-eggdle.mp3";
 import announcerConneggtions from "./announcer-conneggtions.mp3";
 import buggsyAintItChief from "./buggsy-aint-it-chief.mp3";
+import buggsyConneggtionsWin from "./buggsy-conneggtions-win.mp3";
 import click from "./click.mp3";
 import continueSound from "./continue.mp3";
 import enterSound from "./enter.mp3";
@@ -84,6 +85,7 @@ export const audio = {
   announcerIntro: new Audio(announcerIntro),
   announcerEggdle: new Audio(announcerEggdle),
   announcerConneggtions: new Audio(announcerConneggtions),
+  buggsyConneggtionsWin: new Audio(buggsyConneggtionsWin),
 } as const;
 
 export function stopAllVoices() {
