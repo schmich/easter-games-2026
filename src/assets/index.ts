@@ -85,6 +85,14 @@ export const audio = {
   announcerConneggtions: new Audio(announcerConneggtions),
 } as const;
 
+export function stopAllVoices() {
+  for (const el of Object.values(audio)) {
+    el.pause();
+    el.currentTime = 0;
+    el.onended = null;
+  }
+}
+
 // Background music — shuffled once, then looped in that order
 const bgTracks = shuffle([new Audio(bgMusic1), new Audio(bgMusic2), new Audio(bgMusic3), new Audio(bgMusic4), new Audio(bgMusic5), new Audio(bgMusic6)]);
 let bgTrackIndex = 0;

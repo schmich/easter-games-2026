@@ -9,7 +9,7 @@ import FailureDialog from "./FailureDialog";
 import GameIntroDialog from "../GameIntroDialog";
 import { evaluateGuess, type LetterResult } from "../../lib/eggdle";
 import { isValidWord } from "../../lib/words";
-import { audio, images, playFailedAudio, playClick, playEnter, playError } from "../../assets";
+import { audio, images, playFailedAudio, playClick, playEnter, playError, stopAllVoices } from "../../assets";
 import { hasSeenIntro, markIntroSeen } from "../../lib/introState";
 
 const MAX_GUESSES = 6;
@@ -259,7 +259,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
         isOpen={showSuccess}
         onOpenChange={setShowSuccess}
         guessCount={guesses.length}
-        onNext={() => navigate("/conneggtions")}
+        onNext={() => { stopAllVoices(); navigate("/conneggtions"); }}
         audioProgress={audioProgress}
       />
 
@@ -271,6 +271,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
       <GameIntroDialog
         isOpen={showIntro}
         onClose={() => {
+          stopAllVoices();
           markIntroSeen("eggdle");
           setShowIntro(false);
         }}
