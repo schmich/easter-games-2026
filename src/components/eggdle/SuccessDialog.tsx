@@ -6,7 +6,6 @@ interface SuccessDialogProps {
   onOpenChange: (isOpen: boolean) => void;
   guessCount: number;
   onNext: () => void;
-  audioProgress?: number;
 }
 
 export default function SuccessDialog({
@@ -14,10 +13,8 @@ export default function SuccessDialog({
   onOpenChange,
   guessCount,
   onNext,
-  audioProgress = 1,
 }: SuccessDialogProps) {
   const state = useOverlayState({ isOpen, onOpenChange });
-  const ready = audioProgress >= 1;
 
   const messages = [
     "Egg-straordinary!",
@@ -75,23 +72,10 @@ export default function SuccessDialog({
               </p>
 
               <button
-                onClick={ready ? onNext : undefined}
-                className={`relative overflow-hidden text-white text-xl px-8 h-12 rounded-full shadow-lg transition-all ${
-                  ready
-                    ? "hover:scale-105 cursor-pointer"
-                    : "cursor-default"
-                }`}
-                style={{ backgroundColor: "#d3d6da" }}
+                onClick={onNext}
+                className="bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-all cursor-pointer"
               >
-                <div
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    background: "linear-gradient(to right, #5aad55, #77c572)",
-                    width: `${audioProgress * 100}%`,
-                    transition: "width 0.1s linear",
-                  }}
-                />
-                <span className="relative z-10">Bring It On 🐰</span>
+                Bring It On 🐰
               </button>
             </div>
           </Modal.Dialog>
