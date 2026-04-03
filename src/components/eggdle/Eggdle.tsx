@@ -224,14 +224,16 @@ export default function Eggdle({ targetWord }: EggdleProps) {
   return (
     <>
       <img
-        src={images.eggsGrass}
+        src={images.jellyBeans}
         alt=""
-        className="absolute bottom-[160px] left-0 w-[180px] opacity-80 pointer-events-none z-[1]"
+        className="fixed bottom-[15%] w-[180px] opacity-100 pointer-events-none z-0"
+        style={{ left: "-5%" }}
       />
       <img
-        src={images.grassBasket}
+        src={images.chocolateBunny}
         alt=""
-        className="absolute bottom-[120px] right-0 w-[160px] opacity-80 pointer-events-none z-[1]"
+        className="fixed bottom-[15%] w-[160px] opacity-100 pointer-events-none z-0"
+        style={{ right: "-10%" }}
       />
       <Header title="Eggdle" />
       <Toast message={toast} />

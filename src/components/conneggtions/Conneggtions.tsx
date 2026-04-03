@@ -153,14 +153,16 @@ export default function Conneggtions() {
   return (
     <>
       <img
-        src={images.eggsGrass}
+        src={images.peep}
         alt=""
-        className="absolute bottom-0 left-0 w-[180px] opacity-80 pointer-events-none z-[2]"
+        className="fixed bottom-[5%] w-[180px] opacity-100 pointer-events-none z-0"
+        style={{ left: "-10%" }}
       />
       <img
-        src={images.grassBasket}
+        src={images.chocolateBunny}
         alt=""
-        className="absolute bottom-0 right-0 w-[160px] opacity-80 pointer-events-none z-[2]"
+        className="fixed bottom-[5%] w-[160px] opacity-100 pointer-events-none z-0"
+        style={{ right: "-10%" }}
       />
       <Header title="Conneggtions" />
       <Toast message={toast} />
