@@ -14,6 +14,8 @@ import title from "./title.webp";
 import banner from "./banner.webp";
 import jellyBeans from "./jelly-beans.webp";
 import chocolateBunny from "./chocolate-bunny.webp";
+import bunnyLeft from "./bunny-left.webp";
+import bunnyRight from "./bunny-right.webp";
 import peep from "./peep.webp";
 
 // Audio
@@ -53,6 +55,8 @@ export const images = {
   jellyBeans,
   chocolateBunny,
   peep,
+  bunnyLeft,
+  bunnyRight,
 } as const;
 
 // Preload all images and audio — returns a promise that resolves when all are loaded
