@@ -111,7 +111,7 @@ fetch(click)
   });
 
 export function playClick() {
-  if (!clickBuffer) return;
+  if (!clickBuffer || muted) return;
   const ctx = getAudioContext();
   if (ctx.state === "suspended") ctx.resume();
   const source = ctx.createBufferSource();
@@ -148,6 +148,38 @@ export function playFailedAudio() {
 }
 
 const allAudio = [...Object.values(audio), ...failedClips, ...bgTracks];
+
+// Global sound mute
+let muted = false;
+const muteListeners = new Set<(muted: boolean) => void>();
+
+export function isMuted() {
+  return muted;
+}
+
+export function setMuted(value: boolean) {
+  muted = value;
+  // Mute/unmute all HTMLAudioElement instances
+  for (const el of allAudio) {
+    el.muted = value;
+  }
+  // Suspend/resume Web Audio context (click sounds)
+  if (audioCtx) {
+    if (value) audioCtx.suspend();
+    else audioCtx.resume();
+  }
+  muteListeners.forEach((fn) => fn(value));
+}
+
+export function toggleMuted() {
+  setMuted(!muted);
+  return muted;
+}
+
+export function onMuteChange(fn: (muted: boolean) => void) {
+  muteListeners.add(fn);
+  return () => { muteListeners.delete(fn); };
+}
 
 export const assetsReady: Promise<void> = Promise.all([
   ...Object.values(images).map(preloadImage),
