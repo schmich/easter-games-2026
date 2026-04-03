@@ -66,8 +66,8 @@ export default function LoaderOverlay({ isOpen, onDismiss }: LoaderOverlayProps)
                   <div className="h-full bg-gradient-to-r from-[#6b4c8a] to-[#b07fd0] rounded-full animate-loading-bar" />
                 </div>
               ) : (
-                <div className={`flex flex-col items-center transition-all duration-250 -mx-8 ${
-                  showButton ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                <div className={`flex flex-col items-center transition-opacity duration-250 -mx-8 ${
+                  showButton ? "opacity-100" : "opacity-0"
                 }`}>
                   <div className="relative w-full -mt-8">
                     <img src={images.title} alt="2026 Easter Games" className="w-full" />
@@ -117,7 +117,7 @@ export default function LoaderOverlay({ isOpen, onDismiss }: LoaderOverlayProps)
                   </div>
                   <Button
                     onPress={onDismiss}
-                    className="bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl w-64 mt-8 mb-4 py-6 rounded-full shadow-lg hover:scale-105 transition-all duration-250 cursor-pointer"
+                    className="bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl w-64 mt-14 mb-4 py-6 rounded-full shadow-lg hover:scale-105 transition-all duration-250 cursor-pointer"
                   >
                     Continue
                   </Button>
