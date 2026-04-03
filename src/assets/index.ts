@@ -1,9 +1,5 @@
 // Images
-import bunny from "./bunny.webp";
-import basket from "./basket.webp";
 import grass from "./grass.webp";
-import eggsGrass from "./eggs-grass.webp";
-import grassBasket from "./grass-basket.webp";
 import buggsy from "./buggsy.webp";
 import buggsyWin from "./buggsy-win.webp";
 import buggsyLose from "./buggsy-lose.webp";
@@ -39,11 +35,7 @@ import bgMusic5 from "./background-music-5.mp3";
 import bgMusic6 from "./background-music-6.mp3";
 
 export const images = {
-  bunny,
-  basket,
   grass,
-  eggsGrass,
-  grassBasket,
   buggsy,
   buggsyWin,
   buggsyLose,
