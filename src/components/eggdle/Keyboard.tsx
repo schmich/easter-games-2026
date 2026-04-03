@@ -40,7 +40,7 @@ export default function Keyboard({ onKey, letterStates, disabled, canSubmit = tr
             return (
               <button
                 key={key}
-                onClick={() => !isEnterDisabled && onKey(key)}
+                onPointerDown={(e) => { e.preventDefault(); !isEnterDisabled && onKey(key); }}
                 className={`
                   flex items-center justify-center rounded-[4px] border border-[#d3d6da]
                   h-[58px] select-none

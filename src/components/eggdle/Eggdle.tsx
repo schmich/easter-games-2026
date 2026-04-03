@@ -25,7 +25,15 @@ export default function Eggdle({ targetWord }: EggdleProps) {
 
   const [guesses, setGuesses] = useState<string[]>([]);
   const [results, setResults] = useState<LetterResult[][]>([]);
-  const [currentGuess, setCurrentGuess] = useState("");
+  const [currentGuess, _setCurrentGuess] = useState("");
+  const currentGuessRef = useRef("");
+  const setCurrentGuess = useCallback((update: string | ((prev: string) => string)) => {
+    _setCurrentGuess((prev) => {
+      const next = typeof update === "function" ? update(prev) : update;
+      currentGuessRef.current = next;
+      return next;
+    });
+  }, []);
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -165,11 +173,11 @@ export default function Eggdle({ targetWord }: EggdleProps) {
         submitGuess();
       } else if (key === "BACKSPACE") {
         setCurrentGuess((prev) => prev.slice(0, -1));
-      } else if (/^[A-Z]$/.test(key) && currentGuess.length < wordLength) {
-        setCurrentGuess((prev) => prev + key);
+      } else if (/^[A-Z]$/.test(key) && currentGuessRef.current.length < wordLength) {
+        setCurrentGuess(currentGuessRef.current + key);
       }
     },
-    [gameOver, submitGuess, currentGuess.length, wordLength]
+    [gameOver, submitGuess, wordLength, setCurrentGuess]
   );
 
   // Physical keyboard handler
