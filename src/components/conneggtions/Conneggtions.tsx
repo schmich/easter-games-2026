@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Button } from "@heroui/react";
 import Header from "../Header";
 import Toast from "../Toast";
@@ -10,7 +10,7 @@ import GameIntroDialog from "../GameIntroDialog";
 import { PUZZLE } from "../../lib/conneggtionsData";
 import type { ConneggtionsGroup } from "../../lib/conneggtionsData";
 import { checkGuess, shuffleWords } from "../../lib/conneggtions";
-import { images, playFailedAudio } from "../../assets";
+import { images, audio, playFailedAudio } from "../../assets";
 import { hasSeenIntro, markIntroSeen } from "../../lib/introState";
 
 export default function Conneggtions() {
@@ -32,6 +32,13 @@ export default function Conneggtions() {
   const [showIntro, setShowIntro] = useState(
     () => !hasSeenIntro("conneggtions")
   );
+
+  useEffect(() => {
+    if (showIntro) {
+      audio.announcerConneggtions.currentTime = 0;
+      audio.announcerConneggtions.play();
+    }
+  }, [showIntro]);
 
   const showToast = useCallback((msg: string, duration = 1500) => {
     setToast(msg);
@@ -224,7 +231,7 @@ export default function Conneggtions() {
         }}
         image={images.bugsyConneggtions}
         title="Conneggtions"
-        description="Bugsy likes to scramble things up a bit. See if you can figure out which eggs go together in which baskets."
+        description="Bugsy likes to scramble things up. 16 words. 4 baskets. Nothing over easy here. Find the conneggtions if you can."
       />
     </>
   );

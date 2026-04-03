@@ -17,6 +17,7 @@ import bugsySwingMiss from "./bugsy-swing-miss.mp3";
 import bugsyIntro from "./bugsy-intro.mp3";
 import announcerIntro from "./announcer-intro.mp3";
 import announcerEggdle from "./announcer-eggdle.mp3";
+import announcerConneggtions from "./announcer-conneggtions.mp3";
 import bugsyAintItChief from "./bugsy-aint-it-chief.mp3";
 
 export const images = {
@@ -62,6 +63,7 @@ export const audio = {
   bugsyIntro: new Audio(bugsyIntro),
   announcerIntro: new Audio(announcerIntro),
   announcerEggdle: new Audio(announcerEggdle),
+  announcerConneggtions: new Audio(announcerConneggtions),
 } as const;
 
 // Failed guess audio set — shuffled, cycles through all
