@@ -21,7 +21,7 @@ export default function FailureDialog({ isOpen, onRetry }: FailureDialogProps) {
         <Modal.Container placement="center" size="sm">
           <Modal.Dialog className="bg-white rounded-2xl shadow-2xl p-0 overflow-hidden border-2 border-[#e8d5f0]">
             {/* Easter egg pattern top bar */}
-            <div className="h-3 w-full bg-gradient-to-r from-[#f6c443] via-[#77c572] to-[#b07fd0]" />
+            <div className="h-3 w-full animate-gradient-cycle" style={{ background: "linear-gradient(90deg, #f6c443, #77c572, #b07fd0, #7eb8da, #f6c443)", backgroundSize: "200% 100%" }} />
 
             <div className="flex flex-col items-center px-8 pt-6 pb-8">
               {/* Bunny image */}
