@@ -74,8 +74,8 @@ export const audio = {
   announcerConneggtions: new Audio(announcerConneggtions),
 } as const;
 
-// Background music — loops bg-1 then bg-2 continuously
-const bgTracks = [new Audio(bgMusic1), new Audio(bgMusic2), new Audio(bgMusic3)];
+// Background music — shuffled once, then looped in that order
+const bgTracks = shuffle([new Audio(bgMusic1), new Audio(bgMusic2), new Audio(bgMusic3)]);
 let bgTrackIndex = 0;
 let bgStarted = false;
 
