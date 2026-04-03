@@ -155,8 +155,8 @@ export default function Conneggtions() {
       <img
         src={images.peep}
         alt=""
-        className="fixed bottom-[5%] w-[180px] opacity-100 pointer-events-none z-0"
-        style={{ left: "-10%" }}
+        className="fixed bottom-[3%] w-[180px] scale-80 opacity-100 pointer-events-none z-0"
+        style={{ left: "-5%" }}
       />
       <img
         src={images.chocolateBunny}
