@@ -25,6 +25,7 @@ import announcerConneggtions from "./announcer-conneggtions.mp3";
 import bugsyAintItChief from "./bugsy-aint-it-chief.mp3";
 import click from "./click.mp3";
 import enter from "./enter.mp3";
+import error from "./error.mp3";
 import bgMusic1 from "./background-music-1.mp3";
 import bgMusic2 from "./background-music-2.mp3";
 import bgMusic3 from "./background-music-3.mp3";
@@ -146,6 +147,14 @@ export function playEnter() {
   enterSound.play();
 }
 
+const errorSound = new Audio(error);
+
+export function playError() {
+  if (soundsMuted) return;
+  errorSound.currentTime = 0;
+  errorSound.play();
+}
+
 // Failed guess audio set — shuffled, cycles through all
 const failedClips = [
   new Audio(bugsySwingMiss),
@@ -172,7 +181,7 @@ export function playFailedAudio() {
   clip.play();
 }
 
-const soundClips = [...Object.values(audio), ...failedClips, enterSound];
+const soundClips = [...Object.values(audio), ...failedClips, enterSound, errorSound];
 
 const soundsListeners = new Set<(muted: boolean) => void>();
 const musicListeners = new Set<(muted: boolean) => void>();

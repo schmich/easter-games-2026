@@ -9,7 +9,7 @@ import FailureDialog from "./FailureDialog";
 import GameIntroDialog from "../GameIntroDialog";
 import { evaluateGuess, type LetterResult } from "../../lib/eggdle";
 import { isValidWord } from "../../lib/words";
-import { audio, images, playFailedAudio, playClick, playEnter } from "../../assets";
+import { audio, images, playFailedAudio, playClick, playEnter, playError } from "../../assets";
 import { hasSeenIntro, markIntroSeen } from "../../lib/introState";
 
 const MAX_GUESSES = 6;
@@ -82,6 +82,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
 
   const submitGuess = useCallback(() => {
     if (currentGuess.length !== wordLength) {
+      playError();
       showToast("Not enough letters");
       setShakeRow(guesses.length);
       setTimeout(() => setShakeRow(-1), 600);
@@ -89,6 +90,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
     }
 
     if (!isValidWord(currentGuess)) {
+      playError();
       showToast("Not in word list");
       setShakeRow(guesses.length);
       setTimeout(() => setShakeRow(-1), 600);
@@ -96,6 +98,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
     }
 
     if (guesses.includes(currentGuess)) {
+      playError();
       showToast("Already guessed");
       setShakeRow(guesses.length);
       setTimeout(() => setShakeRow(-1), 600);
