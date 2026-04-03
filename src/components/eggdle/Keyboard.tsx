@@ -5,6 +5,7 @@ interface KeyboardProps {
   letterStates: Map<string, LetterResult>;
   disabled?: boolean;
   canSubmit?: boolean;
+  canBackspace?: boolean;
 }
 
 const rows = [
@@ -25,7 +26,7 @@ const resultTextColors: Record<LetterResult, string> = {
   absent: "#ffffff",
 };
 
-export default function Keyboard({ onKey, letterStates, disabled, canSubmit = true }: KeyboardProps) {
+export default function Keyboard({ onKey, letterStates, disabled, canSubmit = true, canBackspace = true }: KeyboardProps) {
   return (
     <div className="flex flex-col items-center gap-[4px] pb-2 px-2 w-full max-w-[500px] mx-auto mb-1">
       {rows.map((row, i) => (
@@ -33,18 +34,20 @@ export default function Keyboard({ onKey, letterStates, disabled, canSubmit = tr
           {row.map((key) => {
             const isWide = key === "ENTER" || key === "BACKSPACE";
             const isEnterDisabled = key === "ENTER" && !canSubmit;
+            const isBackspaceDisabled = key === "BACKSPACE" && !canBackspace;
+            const isKeyDisabled = isEnterDisabled || isBackspaceDisabled;
             const state = letterStates.get(key);
-            const bg = isEnterDisabled ? "#e8e8e8" : state ? resultColors[state] : "#ffffff";
-            const textColor = isEnterDisabled ? "#b0b0b0" : state ? resultTextColors[state] : "#1a1a2e";
+            const bg = isKeyDisabled ? "#e8e8e8" : state ? resultColors[state] : "#ffffff";
+            const textColor = isKeyDisabled ? "#b0b0b0" : state ? resultTextColors[state] : "#1a1a2e";
 
             return (
               <button
                 key={key}
-                onPointerDown={(e) => { e.preventDefault(); !isEnterDisabled && onKey(key); }}
+                onPointerDown={(e) => { e.preventDefault(); !isKeyDisabled && onKey(key); }}
                 className={`
                   flex items-center justify-center rounded-[4px] border border-[#d3d6da]
                   h-[58px] select-none
-                  ${disabled || isEnterDisabled ? "cursor-default" : "cursor-pointer active:opacity-70"}
+                  ${disabled || isKeyDisabled ? "cursor-default" : "cursor-pointer active:opacity-70"}
                   ${isWide ? "text-base px-1 flex-[1.5]" : "text-[1.3rem] flex-1"}
                 `}
                 style={{
