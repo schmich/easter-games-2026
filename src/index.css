@@ -18,6 +18,7 @@ body {
   --animate-bounce-pop: bounce-pop 0.4s ease-out;
   --animate-gradient-cycle: gradient-cycle 6s linear infinite;
   --animate-shadow-cycle: shadow-cycle 8s ease-in-out infinite;
+  --animate-wobble-float: wobble-float 8s ease-in-out infinite;
   --animate-shrink-away: shrink-away 0.3s ease-in forwards;
   --animate-reveal-pulse: reveal-pulse 0.5s ease-out;
 }
@@ -150,6 +151,21 @@ body {
   100% {
     width: 0%;
     margin-left: 100%;
+  }
+}
+
+@keyframes wobble-float {
+  0% {
+    transform: translateY(0) rotate(var(--wobble-base));
+  }
+  33% {
+    transform: translateY(-8px) rotate(calc(var(--wobble-base) + 5deg));
+  }
+  66% {
+    transform: translateY(-3px) rotate(calc(var(--wobble-base) - 5deg));
+  }
+  100% {
+    transform: translateY(0) rotate(var(--wobble-base));
   }
 }
 

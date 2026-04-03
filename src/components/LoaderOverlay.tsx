@@ -5,9 +5,10 @@ import { assetsReady, images, isMuted, toggleMuted, onMuteChange } from "../asse
 interface LoaderOverlayProps {
   isOpen: boolean;
   onDismiss: () => void;
+  onLoaded?: () => void;
 }
 
-export default function LoaderOverlay({ isOpen, onDismiss }: LoaderOverlayProps) {
+export default function LoaderOverlay({ isOpen, onDismiss, onLoaded }: LoaderOverlayProps) {
   const state = useOverlayState({ isOpen, onOpenChange: () => {} });
   const [loaded, setLoaded] = useState(false);
   const [fadingOut, setFadingOut] = useState(false);
@@ -40,6 +41,7 @@ export default function LoaderOverlay({ isOpen, onDismiss }: LoaderOverlayProps)
     if (fadingOut) {
       const t = setTimeout(() => {
         setLoaded(true);
+        onLoaded?.();
         setTimeout(() => setShowButton(true), 50);
       }, 250);
       return () => clearTimeout(t);

@@ -5,6 +5,7 @@ import LoaderOverlay from "./LoaderOverlay";
 
 export default function Layout() {
   const [loaderDismissed, setLoaderDismissed] = useState(false);
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
 
   return (
     <div
@@ -27,9 +28,11 @@ export default function Layout() {
         </div>
       ) : (
         <>
-          <LoaderOverlay isOpen onDismiss={() => { startBackgroundMusic(); setLoaderDismissed(true); }} />
-          <img src={images.jellyBeans} alt="" className="fixed top-1/2 left-1/2 w-36 -rotate-12 pointer-events-none z-[9999]" style={{ marginLeft: "-240px", marginTop: "200px" }} />
-          <img src={images.chocolateBunny} alt="" className="fixed top-1/2 left-1/2 w-32 rotate-12 pointer-events-none z-[9999]" style={{ marginLeft: "110px", marginTop: "150px" }} />
+          <LoaderOverlay isOpen onLoaded={() => setAssetsLoaded(true)} onDismiss={() => { startBackgroundMusic(); setLoaderDismissed(true); }} />
+          {assetsLoaded && <>
+            <img src={images.jellyBeans} alt="" className="fixed top-1/2 left-1/2 w-36 pointer-events-none z-[9999] animate-wobble-float" style={{ marginLeft: "-240px", marginTop: "200px", "--wobble-base": "-12deg" } as React.CSSProperties} />
+            <img src={images.chocolateBunny} alt="" className="fixed top-1/2 left-1/2 w-32 pointer-events-none z-[9999] animate-wobble-float" style={{ marginLeft: "110px", marginTop: "150px", "--wobble-base": "12deg", animationDelay: "-3s" } as React.CSSProperties} />
+          </>}
         </>
       )}
     </div>
