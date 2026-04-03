@@ -84,16 +84,16 @@ export default function Header({ title }: HeaderProps) {
         </Dropdown.Trigger>
         <Dropdown.Popover className="min-w-[140px] rounded-lg">
           <Dropdown.Menu aria-label="Audio settings" selectionMode="multiple">
-            <Dropdown.Item id="sounds" onAction={toggleSoundsMuted} className="text-[#6b4c8a] cursor-pointer">
+            <Dropdown.Item id="sounds" onAction={toggleSoundsMuted} className="text-[#6b4c8a] cursor-pointer text-lg">
               <span className="flex items-center justify-between w-full">
                 <span>Sounds</span>
-                <span className={`text-xs ${soundsMuted ? "opacity-40" : ""}`}>{soundsMuted ? "OFF" : "ON"}</span>
+                <span className={`text-base ${soundsMuted ? "opacity-40" : ""}`}>{soundsMuted ? "OFF" : "ON"}</span>
               </span>
             </Dropdown.Item>
-            <Dropdown.Item id="music" onAction={toggleMusicMuted} className="text-[#6b4c8a] cursor-pointer">
+            <Dropdown.Item id="music" onAction={toggleMusicMuted} className="text-[#6b4c8a] cursor-pointer text-lg">
               <span className="flex items-center justify-between w-full">
                 <span>Music</span>
-                <span className={`text-xs ${musicMuted ? "opacity-40" : ""}`}>{musicMuted ? "OFF" : "ON"}</span>
+                <span className={`text-base ${musicMuted ? "opacity-40" : ""}`}>{musicMuted ? "OFF" : "ON"}</span>
               </span>
             </Dropdown.Item>
           </Dropdown.Menu>
