@@ -1,6 +1,6 @@
 import { Modal, Button, useOverlayState } from "@heroui/react";
 import type { ConneggtionsGroup } from "../../lib/conneggtionsData";
-import { images } from "../../assets";
+import { images, playEnter } from "../../assets";
 
 const DIFFICULTY_COLORS: Record<number, { bg: string; text: string }> = {
   0: { bg: "#f6c443", text: "#1a1a2e" },
@@ -109,7 +109,7 @@ export default function EndDialog({
                 </>
               ) : (
                 <Button
-                  onPress={onRetry}
+                  onPress={() => { playEnter(); onRetry(); }}
                   className="bg-[#6b4c8a] text-white rounded-full px-8 py-6 text-xl font-medium cursor-pointer hover:bg-[#5a3d78] transition-colors mt-2"
                 >
                   Try Again

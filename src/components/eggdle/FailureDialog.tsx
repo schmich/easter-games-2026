@@ -1,5 +1,5 @@
 import { Modal, Button, useOverlayState } from "@heroui/react";
-import { images } from "../../assets";
+import { images, playEnter } from "../../assets";
 
 interface FailureDialogProps {
   isOpen: boolean;
@@ -40,7 +40,7 @@ export default function FailureDialog({ isOpen, onRetry }: FailureDialogProps) {
               </p>
 
               <Button
-                onPress={onRetry}
+                onPress={() => { playEnter(); onRetry(); }}
                 className="bg-[#6b4c8a] text-white rounded-full px-8 py-6 text-xl font-medium cursor-pointer hover:bg-[#5a3d78] transition-colors"
               >
                 Try Again

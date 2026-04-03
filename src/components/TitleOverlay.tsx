@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Modal, Button, useOverlayState } from "@heroui/react";
-import { assetsReady, images, isSoundsMuted, isMusicMuted, toggleSoundsMuted, toggleMusicMuted, onSoundsChange, onMusicChange } from "../assets";
+import { assetsReady, images, isSoundsMuted, isMusicMuted, toggleSoundsMuted, toggleMusicMuted, onSoundsChange, onMusicChange, playEnter } from "../assets";
 
 interface TitleOverlayProps {
   isOpen: boolean;
@@ -140,7 +140,7 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
                     </div>
                   </div>
                   <Button
-                    onPress={onDismiss}
+                    onPress={() => { playEnter(); onDismiss(); }}
                     className="bg-gradient-to-r from-[#5aad55] to-[#77c572] text-white text-xl w-64 mt-4 mb-4 py-6 rounded-full shadow-lg hover:scale-105 transition-all duration-250 cursor-pointer"
                   >
                     Play
