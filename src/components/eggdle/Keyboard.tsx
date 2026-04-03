@@ -4,6 +4,7 @@ interface KeyboardProps {
   onKey: (key: string) => void;
   letterStates: Map<string, LetterResult>;
   disabled?: boolean;
+  canSubmit?: boolean;
 }
 
 const rows = [
@@ -24,25 +25,26 @@ const resultTextColors: Record<LetterResult, string> = {
   absent: "#ffffff",
 };
 
-export default function Keyboard({ onKey, letterStates, disabled }: KeyboardProps) {
+export default function Keyboard({ onKey, letterStates, disabled, canSubmit = true }: KeyboardProps) {
   return (
     <div className="flex flex-col items-center gap-[4px] pb-2 px-2 w-full max-w-[500px] mx-auto mb-1">
       {rows.map((row, i) => (
         <div key={i} className="flex gap-[3px] w-full justify-center">
           {row.map((key) => {
             const isWide = key === "ENTER" || key === "BACKSPACE";
+            const isEnterDisabled = key === "ENTER" && !canSubmit;
             const state = letterStates.get(key);
-            const bg = state ? resultColors[state] : "#ffffff";
-            const textColor = state ? resultTextColors[state] : "#1a1a2e";
+            const bg = isEnterDisabled ? "#e8e8e8" : state ? resultColors[state] : "#ffffff";
+            const textColor = isEnterDisabled ? "#b0b0b0" : state ? resultTextColors[state] : "#1a1a2e";
 
             return (
               <button
                 key={key}
-                onClick={() => onKey(key)}
+                onClick={() => !isEnterDisabled && onKey(key)}
                 className={`
                   flex items-center justify-center rounded-[4px] border border-[#d3d6da]
                   h-[58px] select-none
-                  ${disabled ? "cursor-default" : "cursor-pointer active:opacity-70"}
+                  ${disabled || isEnterDisabled ? "cursor-default" : "cursor-pointer active:opacity-70"}
                   ${isWide ? "text-base px-1 flex-[1.5]" : "text-[1.3rem] flex-1"}
                 `}
                 style={{

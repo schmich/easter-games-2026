@@ -236,7 +236,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
             won={won}
           />
         </div>
-        <Keyboard onKey={onKey} letterStates={letterStates} disabled={gameOver} />
+        <Keyboard onKey={onKey} letterStates={letterStates} disabled={gameOver} canSubmit={currentGuess.length === wordLength} />
       </div>
 
       <SuccessDialog
