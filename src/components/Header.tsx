@@ -61,7 +61,9 @@ export default function Header({ title }: HeaderProps) {
       <div className="absolute right-4 top-1/2 -translate-y-1/2">
       <Dropdown>
         <Dropdown.Trigger>
-          <button
+          <div
+            role="button"
+            tabIndex={0}
             aria-label="Audio settings"
             className="text-[#6b4c8a] hover:text-[#5a3d78] transition-colors cursor-pointer"
           >
@@ -78,7 +80,7 @@ export default function Header({ title }: HeaderProps) {
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
               </svg>
             )}
-          </button>
+          </div>
         </Dropdown.Trigger>
         <Dropdown.Popover className="min-w-[140px] rounded-lg">
           <Dropdown.Menu aria-label="Audio settings" selectionMode="multiple">
