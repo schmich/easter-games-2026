@@ -218,13 +218,15 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
           <Modal.Dialog className="bg-white rounded-2xl p-0 !overflow-visible animate-shadow-cycle">
             <div className="h-3 w-full animate-gradient-cycle rounded-t-2xl" style={{ background: "linear-gradient(90deg, #f6c443, #77c572, #b07fd0, #7eb8da, #f6c443)", backgroundSize: "200% 100%" }} />
 
-            <div className="flex flex-col items-center px-8 py-8 !overflow-visible">
+            <div className="flex flex-col items-center !overflow-visible">
+              <div className={`w-full overflow-hidden transition-opacity duration-250 flex justify-center ${
+                showButton ? "opacity-100" : "opacity-0"
+              }`}>
+                <img src={images.title} alt="2026 Easter Games" className="w-[384px] max-w-none shrink-0" />
+              </div>
               <div className={`flex flex-col items-center transition-opacity duration-250 -mx-8 !overflow-visible ${
                 showButton ? "opacity-100" : "opacity-0"
               }`}>
-                <div className="relative w-full -mt-8 overflow-hidden">
-                  <img src={images.title} alt="2026 Easter Games" className="w-[384px] max-w-none mx-auto block" />
-                </div>
                 <div className="relative flex justify-center -mt-[98px]" style={{ marginLeft: "-70px", marginRight: "-70px" }}>
                   <div className="relative w-[520px] max-w-[110dvw]">
                     <img src={images.banner} alt="The 2026 Easter Games" className="w-full" />
