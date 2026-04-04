@@ -125,6 +125,14 @@ export default function Conneggtions() {
         setSolvedGroups(newSolved);
         setAnimating(false);
 
+        // Play corresponding Buggsy audio for each solved group
+        const groupAudio = [audio.buggsyConneggtions1, audio.buggsyConneggtions2, audio.buggsyConneggtions3, audio.buggsyConneggtions4];
+        const clip = groupAudio[newSolved.length - 1];
+        if (clip) {
+          clip.currentTime = 0;
+          clip.play();
+        }
+
         if (newSolved.length === 4) {
           setWon(true);
           setGameOver(true);
