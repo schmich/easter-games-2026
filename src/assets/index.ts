@@ -27,6 +27,8 @@ import announcerEggdle from "./announcer-eggdle.mp3";
 import announcerConneggtions from "./announcer-conneggtions.mp3";
 import buggsyAintItChief from "./buggsy-aint-it-chief.mp3";
 import buggsyConneggtionsWin from "./buggsy-conneggtions-win.mp3";
+import buggsyWelcomeTraveler from "./buggsy-welcome-traveler.mp3";
+import buggsyWelcomeBackTraveler from "./buggsy-welcome-back-traveler.mp3";
 import buggsyConneggtions1 from "./buggsy-conneggtions-1.mp3";
 import buggsyConneggtions2 from "./buggsy-conneggtions-2.mp3";
 import buggsyConneggtions3 from "./buggsy-conneggtions-3.mp3";
@@ -95,6 +97,8 @@ export const audio = {
   announcerEggdle: new Audio(announcerEggdle),
   announcerConneggtions: new Audio(announcerConneggtions),
   buggsyConneggtionsWin: new Audio(buggsyConneggtionsWin),
+  buggsyWelcomeTraveler: new Audio(buggsyWelcomeTraveler),
+  buggsyWelcomeBackTraveler: new Audio(buggsyWelcomeBackTraveler),
   buggsyConneggtions1: new Audio(buggsyConneggtions1),
   buggsyConneggtions2: new Audio(buggsyConneggtions2),
   buggsyConneggtions3: new Audio(buggsyConneggtions3),

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Modal, Button, useOverlayState } from "@heroui/react";
 import Sparkles from "./Sparkles";
-import { assetsReady, images, isSoundsMuted, isMusicMuted, toggleSoundsMuted, toggleMusicMuted, onSoundsChange, onMusicChange, playContinue, playBell, onLoadProgress } from "../assets";
+import { assetsReady, images, audio, isSoundsMuted, isMusicMuted, toggleSoundsMuted, toggleMusicMuted, onSoundsChange, onMusicChange, playContinue, playBell, onLoadProgress } from "../assets";
 
 interface TitleOverlayProps {
   isOpen: boolean;
@@ -49,6 +49,19 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
   // Notify parent when dialog is shown
   useEffect(() => {
     if (showDialog) onLoaded?.();
+  }, [showDialog]);
+
+  // Play welcome audio after dialog shows
+  useEffect(() => {
+    if (!showDialog) return;
+    const seen = localStorage.getItem("title-seen") === "1";
+    const clip = seen ? audio.buggsyWelcomeBackTraveler : audio.buggsyWelcomeTraveler;
+    localStorage.setItem("title-seen", "1");
+    const t = setTimeout(() => {
+      clip.currentTime = 0;
+      clip.play();
+    }, 2000);
+    return () => clearTimeout(t);
   }, [showDialog]);
 
   // Handle egg click
