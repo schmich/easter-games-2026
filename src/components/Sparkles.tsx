@@ -7,6 +7,8 @@ interface SparklesProps {
   count?: number;
   minSize?: number;
   maxSize?: number;
+  padX?: number;
+  padY?: number;
 }
 
 export default function Sparkles({
@@ -15,6 +17,8 @@ export default function Sparkles({
   lifetime = 1500,
   minSize = 8,
   maxSize = 16,
+  padX = 5,
+  padY = 10,
 }: SparklesProps) {
   const [sparkles, setSparkles] = useState<{ id: number; left: number; top: number; size: number }[]>([]);
   const history = useRef<{ left: number; top: number }[]>([]);
@@ -25,8 +29,8 @@ export default function Sparkles({
     const timer = setInterval(() => {
       let left: number, top: number, attempts = 0;
       do {
-        left = 5 + Math.random() * 90;
-        top = 10 + Math.random() * 70;
+        left = padX + Math.random() * (100 - padX * 2);
+        top = padY + Math.random() * (100 - padY * 2);
         attempts++;
       } while (
         attempts < 20 &&

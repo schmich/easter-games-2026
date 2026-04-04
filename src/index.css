@@ -170,19 +170,43 @@ body {
 
 @keyframes egg-glow-hue {
   0% {
-    filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg) saturate(2);
   }
   25% {
-    filter: hue-rotate(60deg);
+    filter: hue-rotate(60deg) saturate(2.5);
   }
   50% {
-    filter: hue-rotate(120deg);
+    filter: hue-rotate(120deg) saturate(2);
   }
   75% {
-    filter: hue-rotate(240deg);
+    filter: hue-rotate(240deg) saturate(2.5);
   }
   100% {
-    filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg) saturate(2);
+  }
+}
+
+@keyframes bg-regal {
+  0%, 100% {
+    background-color: rgba(100,40,140,0.3);
+  }
+  33% {
+    background-color: rgba(30,50,140,0.3);
+  }
+  66% {
+    background-color: rgba(140,20,50,0.3);
+  }
+}
+
+@keyframes egg-glow-regal {
+  0%, 100% {
+    background-color: rgb(120,40,180);
+  }
+  33% {
+    background-color: rgb(30,60,180);
+  }
+  66% {
+    background-color: rgb(180,20,60);
   }
 }
 

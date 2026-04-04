@@ -92,9 +92,10 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
               transform: "translate(-50%, -50%)",
               left: "50%",
               top: "50%",
-              background: "radial-gradient(ellipse, rgba(246,196,67,1) 0%, rgba(255,215,80,0.8) 5%, rgba(246,196,67,0.5) 8%, rgba(176,127,208,0.4) 12%, rgba(126,184,218,0.3) 16%, rgba(119,197,114,0.25) 20%, rgba(246,196,67,0.15) 24%, transparent 30%)",
               borderRadius: "50%",
-              animation: "shimmer 3s ease-in-out infinite, egg-glow-hue 8s linear infinite",
+              animation: "shimmer 3s ease-in-out infinite, egg-glow-regal 10s ease-in-out infinite",
+              maskImage: "radial-gradient(ellipse, black 0%, black 8%, transparent 30%)",
+              WebkitMaskImage: "radial-gradient(ellipse, black 0%, black 8%, transparent 30%)",
               opacity: loaded ? 1 : 0,
             }}
           />
@@ -108,7 +109,7 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
           <img
             src={images.loadingEgg}
             alt=""
-            className="h-[58vh] max-h-[495px] max-w-[70dvw] w-auto"
+            className="h-[43vh] max-h-[370px] max-w-[70dvw] w-auto"
           />
           {/* Gray desaturated overlay (top layer) — clips from top down as progress increases */}
           <img
@@ -121,6 +122,7 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
               transition: "clip-path 0.3s ease-out",
             }}
           />
+          <Sparkles active={loaded && !shrinking} interval={200} minSize={8} maxSize={16} padX={20} padY={15} />
         </div>
       </div>
     );

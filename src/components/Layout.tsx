@@ -15,6 +15,7 @@ export default function Layout() {
           "linear-gradient(180deg, #f0e6f6 0%, #e8f5e9 40%, #fef9e7 100%)",
       }}
     >
+      <div className="absolute inset-0 pointer-events-none" style={{ animation: "bg-regal 12s ease-in-out infinite" }} />
       {/* Easter decorations */}
       {(titleDismissed || assetsLoaded) && (
         <img
