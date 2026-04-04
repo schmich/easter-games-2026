@@ -215,17 +215,23 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
               }}
             />
           </>)}
-          <Modal.Dialog className="bg-white rounded-2xl p-0 overflow-hidden animate-shadow-cycle">
+          <Modal.Dialog className="bg-white rounded-2xl p-0 !overflow-visible animate-shadow-cycle">
             <div className="h-3 w-full animate-gradient-cycle rounded-t-2xl" style={{ background: "linear-gradient(90deg, #f6c443, #77c572, #b07fd0, #7eb8da, #f6c443)", backgroundSize: "200% 100%" }} />
 
-            <div className="flex flex-col items-center px-8 py-8">
-              <div className={`flex flex-col items-center transition-opacity duration-250 -mx-8 ${
+            <div className="flex flex-col items-center px-8 py-8 !overflow-visible">
+              <div className={`flex flex-col items-center transition-opacity duration-250 -mx-8 !overflow-visible ${
                 showButton ? "opacity-100" : "opacity-0"
               }`}>
-                <div className="relative w-full -mt-8">
-                  <img src={images.title} alt="2026 Easter Games" className="w-full" />
+                <div className="relative w-full -mt-8 overflow-hidden">
+                  <img src={images.title} alt="2026 Easter Games" className="w-[384px] max-w-none mx-auto block" />
                 </div>
-                <div className="flex flex-col gap-3 w-64 mt-36">
+                <div className="relative flex justify-center -mt-[98px]" style={{ marginLeft: "-70px", marginRight: "-70px" }}>
+                  <div className="relative w-[520px] max-w-[110dvw]">
+                    <img src={images.banner} alt="The 2026 Easter Games" className="w-full" />
+                    <Sparkles active={showButton} />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 w-64 -mt-[10px]">
                   <Button
                     onPress={toggleFullscreen}
                     className="bg-gradient-to-r from-[#7eb8da] to-[#a0d0ef] text-white text-base w-full py-4 rounded-full shadow-md hover:scale-105 transition-all duration-250 cursor-pointer flex items-center justify-center gap-2"
@@ -297,12 +303,6 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
               </div>
             </div>
           </Modal.Dialog>
-          {showButton && (
-            <div className="absolute left-1/2 -translate-x-1/2 w-[520px] max-w-[110dvw] pointer-events-none" style={{ top: "27%" }}>
-              <img src={images.banner} alt="The 2026 Easter Games" className="w-full" />
-              <Sparkles active={showButton} />
-            </div>
-          )}
         </Modal.Container>
       </Modal.Backdrop>
     </Modal>
