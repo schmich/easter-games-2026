@@ -211,14 +211,14 @@ export default function Eggdle({ targetWord }: EggdleProps) {
       <img
         src={images.jellyBeans}
         alt=""
-        className="fixed bottom-[15%] w-[180px] opacity-100 pointer-events-none z-0"
-        style={{ left: "-5%" }}
+        className="fixed top-[80px] w-[140px] opacity-100 pointer-events-none z-0 animate-wobble-float"
+        style={{ left: "-5%", "--wobble-base": "-8deg" } as React.CSSProperties}
       />
       <img
         src={images.chocolateBunny}
         alt=""
-        className="fixed bottom-[15%] w-[160px] opacity-100 pointer-events-none z-0"
-        style={{ right: "-10%" }}
+        className="fixed top-[50px] w-[120px] opacity-100 pointer-events-none z-0 animate-wobble-float"
+        style={{ right: "-5%", "--wobble-base": "8deg", animationDelay: "-4s" } as React.CSSProperties}
       />
       <Header title="Eggdle" />
       <Toast message={toast} />

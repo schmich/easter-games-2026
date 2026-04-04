@@ -155,6 +155,18 @@ export default function Conneggtions() {
   return (
     <>
       <img
+        src={images.jellyBeans}
+        alt=""
+        className="fixed top-[80px] w-[140px] opacity-100 pointer-events-none z-0 animate-wobble-float"
+        style={{ left: "-5%", "--wobble-base": "-8deg" } as React.CSSProperties}
+      />
+      <img
+        src={images.chocolateBunny}
+        alt=""
+        className="fixed top-[50px] w-[120px] opacity-100 pointer-events-none z-0 animate-wobble-float"
+        style={{ right: "-5%", "--wobble-base": "8deg", animationDelay: "-4s" } as React.CSSProperties}
+      />
+      <img
         src={images.peep}
         alt=""
         className="fixed bottom-[3%] w-[180px] scale-80 opacity-100 pointer-events-none z-0"
