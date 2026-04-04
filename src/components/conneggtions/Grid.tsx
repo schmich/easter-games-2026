@@ -19,7 +19,7 @@ export default function Grid({
 }: GridProps) {
   return (
     <div className="grid grid-cols-4 gap-1.5 w-full max-w-[480px]">
-      {words.map((word) => {
+      {words.map((word, i) => {
         const bounceIndex = bouncingWords.indexOf(word);
         return (
           <Tile
@@ -31,6 +31,8 @@ export default function Grid({
             bounce={bounceIndex >= 0}
             bounceDelay={bounceIndex >= 0 ? bounceIndex * 100 : 0}
             shrink={shrinkingWords.includes(word)}
+            gridIndex={i}
+            gridTotal={words.length}
           />
         );
       })}
