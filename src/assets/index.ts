@@ -29,12 +29,13 @@ import cloud10 from "./cloud-10.webp";
 
 // Audio
 import buggsyEggdleWin from "./buggsy-eggdle-win.mp3";
-import buggsySwingMiss from "./buggsy-swing-miss.mp3";
+import buggsyMissSwing from "./buggsy-miss-swing.mp3";
 import buggsyIntro from "./buggsy-intro.mp3";
 import announcerIntro from "./announcer-intro.mp3";
 import announcerEggdle from "./announcer-eggdle.mp3";
 import announcerConneggtions from "./announcer-conneggtions.mp3";
-import buggsyAintItChief from "./buggsy-aint-it-chief.mp3";
+import buggsyMissAintItChief from "./buggsy-miss-aint-it-chief.mp3";
+import buggsyMissHardBoiledEgg from "./buggsy-miss-hard-boiled-egg.mp3";
 import buggsyConneggtionsWin from "./buggsy-conneggtions-win.mp3";
 import buggsyWelcomeTraveler from "./buggsy-title-welcome-travelers.mp3";
 import buggsyWelcomeBackTraveler from "./buggsy-title-welcome-back-travelers.mp3";
@@ -219,10 +220,11 @@ export function playClap() {
   clapSound.play();
 }
 
-// Failed guess audio set — shuffled, cycles through all
-const failedClips = [
-  new Audio(buggsySwingMiss),
-  new Audio(buggsyAintItChief),
+// Missed guess audio set — shuffled, cycles through all
+const missedClips = [
+  new Audio(buggsyMissSwing),
+  new Audio(buggsyMissAintItChief),
+  new Audio(buggsyMissHardBoiledEgg),
 ];
 
 function shuffle<T>(arr: T[]): T[] {
@@ -234,13 +236,13 @@ function shuffle<T>(arr: T[]): T[] {
   return result;
 }
 
-const failedQueue: HTMLAudioElement[] = shuffle(failedClips);
-let failedIndex = 0;
+const missedQueue: HTMLAudioElement[] = shuffle(missedClips);
+let missedIndex = 0;
 
-export function playFailedAudio() {
+export function playMissedAudio() {
   if (soundsMuted) return;
-  const clip = failedQueue[failedIndex % failedQueue.length];
-  failedIndex++;
+  const clip = missedQueue[missedIndex % missedQueue.length];
+  missedIndex++;
   clip.currentTime = 0;
   clip.play();
 }
@@ -264,7 +266,7 @@ export function playLoseAudio() {
   clip.play();
 }
 
-const soundClips = [...Object.values(audio), ...failedClips, ...loseClips, continueSfx, enterSfx, errorSound, bellSound, clapSound];
+const soundClips = [...Object.values(audio), ...missedClips, ...loseClips, continueSfx, enterSfx, errorSound, bellSound, clapSound];
 
 // Apply persisted mute state on load
 if (soundsMuted) {
