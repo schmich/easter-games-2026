@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { images, startBackgroundMusic } from "../assets";
 import TitleOverlay from "./TitleOverlay";
@@ -6,6 +6,13 @@ import TitleOverlay from "./TitleOverlay";
 export default function Layout() {
   const [titleDismissed, setTitleDismissed] = useState(false);
   const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [showDecorations, setShowDecorations] = useState(false);
+
+  useEffect(() => {
+    if (!assetsLoaded) return;
+    const t = setTimeout(() => setShowDecorations(true), 300);
+    return () => clearTimeout(t);
+  }, [assetsLoaded]);
 
   return (
     <div
@@ -32,9 +39,9 @@ export default function Layout() {
       ) : (
         <>
           <TitleOverlay isOpen onLoaded={() => { setAssetsLoaded(true); startBackgroundMusic(); }} onDismiss={() => setTitleDismissed(true)} />
-          {assetsLoaded && <>
-            <img src={images.jellyBeans} alt="" className="fixed top-1/2 left-1/2 w-36 pointer-events-none z-[9999] animate-wobble-float" style={{ marginLeft: "-240px", marginTop: "230px", "--wobble-base": "-12deg" } as React.CSSProperties} />
-            <img src={images.chocolateBunny} alt="" className="fixed top-1/2 left-1/2 w-32 pointer-events-none z-[9999] animate-wobble-float" style={{ marginLeft: "110px", marginTop: "150px", "--wobble-base": "12deg", animationDelay: "-3s" } as React.CSSProperties} />
+          {showDecorations && <>
+            <img src={images.jellyBeans} alt="" className="fixed top-1/2 left-1/2 w-36 pointer-events-none z-[9999] opacity-0" style={{ marginLeft: "-240px", marginTop: "230px", "--wobble-base": "-12deg", animation: "pop-in 0.5s ease-out forwards, wobble-float 8s ease-in-out 0.5s infinite" } as React.CSSProperties} />
+            <img src={images.chocolateBunny} alt="" className="fixed top-1/2 left-1/2 w-32 pointer-events-none z-[9999] opacity-0" style={{ marginLeft: "110px", marginTop: "150px", "--wobble-base": "12deg", animation: "pop-in 0.5s ease-out 0.15s forwards, wobble-float 8s ease-in-out 0.65s infinite" } as React.CSSProperties} />
           </>}
         </>
       )}
