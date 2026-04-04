@@ -26,7 +26,7 @@ export default function Layout() {
       )}
 
       {titleDismissed ? (
-        <div className="flex flex-col flex-1 overflow-hidden relative z-10">
+        <div className="flex flex-col flex-1 overflow-hidden relative z-[12]">
           <Outlet />
         </div>
       ) : (
