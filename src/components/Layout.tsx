@@ -16,11 +16,13 @@ export default function Layout() {
       }}
     >
       {/* Easter decorations */}
-      <img
-        src={images.grass}
-        alt=""
-        className="absolute bottom-0 left-0 w-full opacity-100 pointer-events-none z-[1]"
-      />
+      {(titleDismissed || assetsLoaded) && (
+        <img
+          src={images.grass}
+          alt=""
+          className={`absolute bottom-0 left-0 w-full opacity-100 pointer-events-none z-[1] ${!titleDismissed ? "animate-grow-in" : ""}`}
+        />
+      )}
 
       {titleDismissed ? (
         <div className="flex flex-col flex-1 overflow-hidden relative z-10">

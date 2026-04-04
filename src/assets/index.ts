@@ -29,6 +29,7 @@ import click from "./click.mp3";
 import continueSound from "./continue.mp3";
 import enterSound from "./enter.mp3";
 import error from "./error.mp3";
+import bell from "./bell.mp3";
 import bgMusic1 from "./background-music-1.mp3";
 import bgMusic2 from "./background-music-2.mp3";
 import bgMusic3 from "./background-music-3.mp3";
@@ -168,11 +169,18 @@ export function playEnter() {
 }
 
 const errorSound = new Audio(error);
+const bellSound = new Audio(bell);
 
 export function playError() {
   if (soundsMuted) return;
   errorSound.currentTime = 0;
   errorSound.play();
+}
+
+export function playBell() {
+  if (soundsMuted) return;
+  bellSound.currentTime = 0;
+  bellSound.play();
 }
 
 // Failed guess audio set — shuffled, cycles through all
@@ -201,7 +209,7 @@ export function playFailedAudio() {
   clip.play();
 }
 
-const soundClips = [...Object.values(audio), ...failedClips, continueSfx, enterSfx, errorSound];
+const soundClips = [...Object.values(audio), ...failedClips, continueSfx, enterSfx, errorSound, bellSound];
 
 const soundsListeners = new Set<(muted: boolean) => void>();
 const musicListeners = new Set<(muted: boolean) => void>();

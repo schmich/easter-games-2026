@@ -19,6 +19,8 @@ body {
   --animate-gradient-cycle: gradient-cycle 6s linear infinite;
   --animate-shadow-cycle: shadow-cycle 8s ease-in-out infinite;
   --animate-wobble-float: wobble-float 8s ease-in-out infinite;
+  --animate-grow-in: grow-in 0.8s ease-out forwards;
+  --animate-egg-pulse: egg-pulse 2s ease-in-out infinite;
   --animate-sun-rays: sun-rays 20s linear infinite;
   --animate-shimmer: shimmer 3s ease-in-out infinite;
   --animate-shrink-away: shrink-away 0.3s ease-in forwards;
@@ -189,6 +191,24 @@ body {
   }
   50% {
     opacity: 0.8;
+  }
+}
+
+@keyframes grow-in {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes egg-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
   }
 }
 

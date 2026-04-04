@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Modal, Button, useOverlayState } from "@heroui/react";
-import { assetsReady, images, isSoundsMuted, isMusicMuted, toggleSoundsMuted, toggleMusicMuted, onSoundsChange, onMusicChange, playContinue, onLoadProgress } from "../assets";
+import { assetsReady, images, isSoundsMuted, isMusicMuted, toggleSoundsMuted, toggleMusicMuted, onSoundsChange, onMusicChange, playContinue, playBell, onLoadProgress } from "../assets";
 
 interface TitleOverlayProps {
   isOpen: boolean;
@@ -52,7 +52,7 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
   // Handle egg click
   const handleEggClick = useCallback(() => {
     if (!loaded) return;
-    playContinue();
+    playBell();
     setShrinking(true);
     setTimeout(() => {
       setShowDialog(true);
@@ -80,32 +80,33 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
   // Phase 1: Loading egg
   if (!showDialog) {
     return (
-      <div className={`fixed inset-0 flex items-end justify-center z-0 ${loaded ? "cursor-pointer" : ""}`} style={{ paddingBottom: "2vh" }} onClick={handleEggClick}>
-        {loaded && !shrinking && (
+      <div className={`fixed inset-0 flex items-center justify-center z-0 ${loaded ? "cursor-pointer" : ""}`} onClick={handleEggClick}>
+        {!shrinking && (
           <div
-            className="absolute animate-shimmer pointer-events-none"
+            className="absolute pointer-events-none transition-opacity duration-700 ease-out"
             style={{
-              width: "140%",
-              height: "140%",
+              width: "200vmax",
+              height: "200vmax",
               transform: "translate(-50%, -50%)",
               left: "50%",
-              top: "45%",
-              background: "radial-gradient(ellipse, rgba(246,196,67,0.7) 0%, rgba(255,215,80,0.4) 25%, rgba(176,127,208,0.2) 45%, transparent 65%)",
+              top: "50%",
+              background: "radial-gradient(ellipse, rgba(246,196,67,1) 0%, rgba(255,215,80,0.8) 5%, rgba(246,196,67,0.5) 8%, rgba(176,127,208,0.4) 12%, rgba(126,184,218,0.3) 16%, rgba(119,197,114,0.25) 20%, rgba(246,196,67,0.15) 24%, transparent 30%)",
               borderRadius: "50%",
               animation: "shimmer 3s ease-in-out infinite, egg-glow-hue 8s linear infinite",
+              opacity: loaded ? 1 : 0,
             }}
           />
         )}
         <div
           className={`relative transition-all duration-400 ease-in ${
             shrinking ? "scale-0 opacity-0" : "scale-100 opacity-100"
-          }`}
+          } ${loaded && !shrinking ? "animate-egg-pulse" : ""}`}
         >
           {/* Full color egg (bottom layer) */}
           <img
             src={images.loadingEgg}
             alt=""
-            className="h-[65vh] max-h-[550px] w-auto"
+            className="h-[58vh] max-h-[495px] w-auto"
           />
           {/* Gray desaturated overlay (top layer) — clips from top down as progress increases */}
           <img
