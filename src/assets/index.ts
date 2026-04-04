@@ -10,8 +10,8 @@ import title from "./title.webp";
 import banner from "./banner.webp";
 import jellyBeans from "./jelly-beans.webp";
 import chocolateBunny from "./chocolate-bunny.webp";
-import bunnyLeft from "./bunny-left.webp";
-import bunnyRight from "./bunny-right.webp";
+import goldBunnyLeft from "./gold-bunny-left.webp";
+import goldBunnyRight from "./gold-bunny-right.webp";
 import peep from "./peep.webp";
 import eggBorder from "./egg-border.webp";
 
@@ -48,8 +48,8 @@ export const images = {
   jellyBeans,
   chocolateBunny,
   peep,
-  bunnyLeft,
-  bunnyRight,
+  goldBunnyLeft,
+  goldBunnyRight,
   eggBorder,
 } as const;
 

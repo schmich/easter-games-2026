@@ -7,6 +7,7 @@ import SolvedGroup from "./SolvedGroup";
 import MistakeIndicator from "./MistakeIndicator";
 import EndDialog from "./EndDialog";
 import GameIntroDialog from "../GameIntroDialog";
+import Decorations from "../Decorations";
 import { PUZZLE } from "../../lib/conneggtionsData";
 import type { ConneggtionsGroup } from "../../lib/conneggtionsData";
 import { checkGuess, shuffleWords } from "../../lib/conneggtions";
@@ -154,33 +155,15 @@ export default function Conneggtions() {
 
   return (
     <>
-      <img
-        src={images.jellyBeans}
-        alt=""
-        className="fixed top-[80px] w-[140px] opacity-100 pointer-events-none z-0 animate-wobble-float"
-        style={{ left: "-5%", "--wobble-base": "-8deg" } as React.CSSProperties}
-      />
-      <img
-        src={images.chocolateBunny}
-        alt=""
-        className="fixed top-[50px] w-[120px] opacity-100 pointer-events-none z-0 animate-wobble-float"
-        style={{ right: "-5%", "--wobble-base": "8deg", animationDelay: "-4s" } as React.CSSProperties}
-      />
-      <img
-        src={images.peep}
-        alt=""
-        className="fixed bottom-[3%] w-[180px] scale-80 opacity-100 pointer-events-none z-0"
-        style={{ left: "-5%" }}
-      />
-      <img
-        src={images.chocolateBunny}
-        alt=""
-        className="fixed bottom-[5%] w-[160px] opacity-100 pointer-events-none z-0"
-        style={{ right: "-10%" }}
+      <Decorations
+        topLeft={{ src: images.peep, className: "top-[60px] w-[140px]", style: { left: "-5%" } }}
+        topRight={{ src: images.chocolateBunny, className: "top-[50px] w-[120px]", style: { right: "-5%" } }}
+        bottomLeft={{ src: images.goldBunnyLeft, className: "h-[300px] w-auto", style: { bottom: "40px", left: "-40px" } }}
+        bottomRight={{ src: images.goldBunnyRight, className: "h-[300px] w-auto", style: { bottom: "40px", right: "-40px" } }}
       />
       <Header title="Conneggtions" />
       <Toast message={toast} />
-      <div className="flex flex-col items-center flex-1 overflow-y-auto px-4 gap-1.5" style={{ paddingTop: "10vh" }}>
+      <div className="flex flex-col items-center flex-1 overflow-y-auto px-4 gap-1.5 relative z-10" style={{ paddingTop: "10vh" }}>
         {/* Solved groups */}
         {solvedGroups.map((group) => (
           <SolvedGroup key={group.category} group={group} />

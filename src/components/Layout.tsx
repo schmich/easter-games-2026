@@ -21,18 +21,6 @@ export default function Layout() {
         alt=""
         className="absolute bottom-0 left-0 w-full opacity-100 pointer-events-none z-[1]"
       />
-      <img
-        src={images.bunnyLeft}
-        alt=""
-        className="fixed h-[300px] w-auto pointer-events-none z-[2]"
-        style={{ bottom: "-40px", left: "-40px" }}
-      />
-      <img
-        src={images.bunnyRight}
-        alt=""
-        className="fixed h-[300px] w-auto pointer-events-none z-[2]"
-        style={{ bottom: "-40px", right: "-40px" }}
-      />
 
       {titleDismissed ? (
         <div className="flex flex-col flex-1 overflow-hidden relative z-10">

@@ -30,7 +30,7 @@ export default function Header({ title }: HeaderProps) {
 
   return (
     <header className="flex items-center justify-center border-b border-[#e8d5f0] px-4 h-[56px] shrink-0 bg-white/80 backdrop-blur-sm relative overflow-hidden">
-      <img src={images.eggBorder} alt="" className="absolute -bottom-3 left-0 w-full opacity-25 pointer-events-none" />
+      <img src={images.eggBorder} alt="" className="absolute -bottom-3 left-0 w-full opacity-35 pointer-events-none" />
       <div className="flex items-center gap-3">
         <h1 className="text-[1.8rem] uppercase text-[#6b4c8a]">
           {title}

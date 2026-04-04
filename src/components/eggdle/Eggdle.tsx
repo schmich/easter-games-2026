@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Grid from "./Grid";
 import Keyboard from "./Keyboard";
 import Header from "../Header";
+import Decorations from "../Decorations";
 import Toast from "../Toast";
 import SuccessDialog from "./SuccessDialog";
 import FailureDialog from "./FailureDialog";
@@ -208,17 +209,11 @@ export default function Eggdle({ targetWord }: EggdleProps) {
 
   return (
     <>
-      <img
-        src={images.jellyBeans}
-        alt=""
-        className="fixed top-[80px] w-[140px] opacity-100 pointer-events-none z-0 animate-wobble-float"
-        style={{ left: "-5%", "--wobble-base": "-8deg" } as React.CSSProperties}
-      />
-      <img
-        src={images.chocolateBunny}
-        alt=""
-        className="fixed top-[50px] w-[120px] opacity-100 pointer-events-none z-0 animate-wobble-float"
-        style={{ right: "-5%", "--wobble-base": "8deg", animationDelay: "-4s" } as React.CSSProperties}
+      <Decorations
+        topLeft={{ src: images.jellyBeans, className: "top-[80px] w-[140px]", style: { left: "-5%" } }}
+        topRight={{ src: images.chocolateBunny, className: "top-[50px] w-[120px]", style: { right: "-5%" } }}
+        bottomLeft={{ src: images.goldBunnyLeft, className: "h-[300px] w-auto", style: { bottom: "80px", left: "-40px" } }}
+        bottomRight={{ src: images.goldBunnyRight, className: "h-[300px] w-auto", style: { bottom: "80px", right: "-40px" } }}
       />
       <Header title="Eggdle" />
       <Toast message={toast} />
