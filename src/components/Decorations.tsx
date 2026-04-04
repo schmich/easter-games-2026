@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import Sparkles from "./Sparkles";
 
 interface DecorationItem {
@@ -6,6 +7,7 @@ interface DecorationItem {
   className?: string;
   style?: React.CSSProperties;
   sparkle?: boolean;
+  belowGrass?: boolean;
 }
 
 interface DecorationsProps {
@@ -44,19 +46,19 @@ export default function Decorations({ topLeft, topRight, bottomLeft, bottomRight
           style={{ "--wobble-base": "8deg", animationDelay: "-4s", ...topRight.style } as React.CSSProperties}
         />
       )}
-      {bottomLeft && (
-        <DecorationImg
-          {...bottomLeft}
-          className={`fixed pointer-events-none z-[2] ${bottomLeft.className ?? ""}`}
-          style={bottomLeft.style}
-        />
+      {bottomLeft && (bottomLeft.belowGrass
+        ? createPortal(
+            <DecorationImg {...bottomLeft} className={`fixed pointer-events-none z-[2] ${bottomLeft.className ?? ""}`} style={bottomLeft.style} />,
+            document.getElementById("root")!.parentElement!
+          )
+        : <DecorationImg {...bottomLeft} className={`fixed pointer-events-none z-[2] ${bottomLeft.className ?? ""}`} style={bottomLeft.style} />
       )}
-      {bottomRight && (
-        <DecorationImg
-          {...bottomRight}
-          className={`fixed pointer-events-none z-[2] ${bottomRight.className ?? ""}`}
-          style={bottomRight.style}
-        />
+      {bottomRight && (bottomRight.belowGrass
+        ? createPortal(
+            <DecorationImg {...bottomRight} className={`fixed pointer-events-none z-[2] ${bottomRight.className ?? ""}`} style={bottomRight.style} />,
+            document.getElementById("root")!.parentElement!
+          )
+        : <DecorationImg {...bottomRight} className={`fixed pointer-events-none z-[2] ${bottomRight.className ?? ""}`} style={bottomRight.style} />
       )}
     </>
   );

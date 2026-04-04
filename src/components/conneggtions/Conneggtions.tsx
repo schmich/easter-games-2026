@@ -166,8 +166,8 @@ export default function Conneggtions() {
       <Decorations
         topLeft={{ src: images.peepChick, className: "top-[60px] w-[140px]", style: { left: "-5%" } }}
         topRight={{ src: images.peepBunny, className: "top-[50px] w-[120px]", style: { right: "-5%" } }}
-        bottomLeft={{ src: images.goldBunnyLeft, className: "h-[300px] w-auto", style: { bottom: "60px", left: "-40px" }, sparkle: true }}
-        bottomRight={{ src: images.goldBunnyRight, className: "h-[300px] w-auto", style: { bottom: "60px", right: "-40px" }, sparkle: true }}
+        bottomLeft={{ src: images.goldBunnyLeft, className: "h-[300px] w-auto", style: { bottom: "60px", left: "-40px" }, sparkle: true, belowGrass: true }}
+        bottomRight={{ src: images.goldBunnyRight, className: "h-[300px] w-auto", style: { bottom: "60px", right: "-40px" }, sparkle: true, belowGrass: true }}
       />
       <Header title="Conneggtions" />
       <Toast message={toast} />
