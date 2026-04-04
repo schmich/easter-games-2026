@@ -43,6 +43,7 @@ import continueSound from "./continue.mp3";
 import enterSound from "./enter.mp3";
 import error from "./error.mp3";
 import bell from "./bell.mp3";
+import buggsyLossMad from "./buggsy-loss-mad.mp3";
 import bgMusic1 from "./background-music-1.mp3";
 import bgMusic2 from "./background-music-2.mp3";
 import bgMusic3 from "./background-music-3.mp3";
@@ -109,6 +110,7 @@ export const audio = {
   buggsyConneggtions2: new Audio(buggsyConneggtions2),
   buggsyConneggtions3: new Audio(buggsyConneggtions3),
   buggsyConneggtions4: new Audio(buggsyConneggtions4),
+  buggsyLossMad: new Audio(buggsyLossMad),
 } as const;
 
 export function stopAllVoices() {

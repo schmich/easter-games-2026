@@ -157,6 +157,8 @@ export default function Conneggtions() {
       if (newMistakes === 0) {
         setTimeout(() => {
           setGameOver(true);
+          audio.buggsyLossMad.currentTime = 0;
+          audio.buggsyLossMad.play();
         }, 800);
       }
     }

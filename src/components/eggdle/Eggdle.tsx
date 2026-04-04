@@ -152,6 +152,8 @@ export default function Eggdle({ targetWord }: EggdleProps) {
       }, revealDuration);
       setTimeout(() => {
         setShowFailure(true);
+        audio.buggsyLossMad.currentTime = 0;
+        audio.buggsyLossMad.play();
       }, revealDuration + 500);
     }
   }, [currentGuess, guesses, results, word, wordLength, showToast]);
