@@ -16,6 +16,7 @@ import peepBunny from "./peep-bunny.webp";
 import eggBorder from "./egg-border.webp";
 import buggsyConneggtionsWinImg from "./buggsy-coneggtions-win.webp";
 import loadingEgg from "./loading-egg.webp";
+import peepGolden from "./peep-golden.webp";
 import cloud1 from "./cloud-1.webp";
 import cloud2 from "./cloud-2.webp";
 import cloud3 from "./cloud-3.webp";
@@ -59,6 +60,8 @@ import enterSound from "./enter.mp3";
 import error from "./error.mp3";
 import bell from "./bell.mp3";
 import clap from "./clap.mp3";
+import buggsyVictory from "./buggsy-victory-speech.mp3";
+import buggsyVictoryNote from "./buggsy-victory-note.mp3";
 import buggsyLoseMad from "./buggsy-lose-mad.mp3";
 import buggsyLoseEggShortage from "./buggsy-lose-egg-shortage.mp3";
 import buggsyLoseSecondChances from "./buggsy-lose-second-chances.mp3";
@@ -88,6 +91,7 @@ export const images = {
   eggBorder,
   buggsyConneggtionsWin: buggsyConneggtionsWinImg,
   loadingEgg,
+  peepGolden,
   clouds: [cloud1, cloud2, cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10],
 } as const;
 
@@ -127,6 +131,8 @@ export const audio = {
   buggsyConneggtions1: new Audio(buggsyConneggtions1),
   buggsyConneggtions2: new Audio(buggsyConneggtions2),
   buggsyConneggtions3: new Audio(buggsyConneggtions3),
+  buggsyVictory: new Audio(buggsyVictory),
+  buggsyVictoryNote: new Audio(buggsyVictoryNote),
 } as const;
 
 export function stopAllVoices() {
