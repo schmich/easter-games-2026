@@ -129,9 +129,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
     }, revealDuration);
 
     if (!isWin && !isLoss) {
-      setTimeout(() => {
-        playMissedAudio();
-      }, (wordLength * 350) / 2);
+      setTimeout(() => playMissedAudio(), 200);
     }
 
     if (isWin) {
