@@ -35,11 +35,14 @@ export default function Conneggtions() {
     () => !hasSeenIntro("conneggtions")
   );
 
+  // Play announcer only when intro dialog is shown
   useEffect(() => {
-    if (showIntro) {
-      audio.announcerConneggtions.currentTime = 0;
-      audio.announcerConneggtions.play();
-    }
+    if (!showIntro) return;
+    audio.announcerConneggtions.currentTime = 0;
+    audio.announcerConneggtions.play();
+    return () => {
+      audio.announcerConneggtions.pause();
+    };
   }, [showIntro]);
 
   const showToast = useCallback((msg: string, duration = 1500) => {
@@ -170,7 +173,7 @@ export default function Conneggtions() {
 
   return (
     <>
-      <Clouds />
+      {!showIntro && <Clouds />}
       <Decorations
         topLeft={{ src: images.peepChick, className: "top-[60px] w-[140px]", style: { left: "-5%" } }}
         topRight={{ src: images.peepBunny, className: "top-[70px] w-[120px]", style: { right: "-5%" } }}

@@ -51,11 +51,14 @@ export default function Eggdle({ targetWord }: EggdleProps) {
     () => !hasSeenIntro("eggdle")
   );
 
+  // Play announcer only when intro dialog is shown
   useEffect(() => {
-    if (showIntro) {
-      audio.announcerEggdle.currentTime = 0;
-      audio.announcerEggdle.play();
-    }
+    if (!showIntro) return;
+    audio.announcerEggdle.currentTime = 0;
+    audio.announcerEggdle.play();
+    return () => {
+      audio.announcerEggdle.pause();
+    };
   }, [showIntro]);
 
   const handleRetry = useCallback(() => {
@@ -212,7 +215,7 @@ export default function Eggdle({ targetWord }: EggdleProps) {
 
   return (
     <>
-      <Clouds />
+      {!showIntro && <Clouds />}
       <Decorations
         topLeft={{ src: images.jellyBeans, className: "top-[80px] w-[140px]", style: { left: "-5%" } }}
         topRight={{ src: images.chocolateBunny, className: "top-[50px] w-[120px]", style: { right: "-5%" } }}
