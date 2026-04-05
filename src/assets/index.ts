@@ -261,6 +261,44 @@ export function playClick() {
   source.start(0);
 }
 
+let explosionBuffer: AudioBuffer | null = null;
+
+fetch(explosion)
+  .then((res) => res.arrayBuffer())
+  .then((buf) => getAudioContext().decodeAudioData(buf))
+  .then((decoded) => {
+    explosionBuffer = decoded;
+  });
+
+export function playExplosion() {
+  if (!explosionBuffer || soundsMuted) return;
+  const ctx = getAudioContext();
+  if (ctx.state === "suspended") ctx.resume();
+  const source = ctx.createBufferSource();
+  source.buffer = explosionBuffer;
+  source.connect(ctx.destination);
+  source.start(0);
+}
+
+let metalTapBuffer: AudioBuffer | null = null;
+
+fetch(metalTap)
+  .then((res) => res.arrayBuffer())
+  .then((buf) => getAudioContext().decodeAudioData(buf))
+  .then((decoded) => {
+    metalTapBuffer = decoded;
+  });
+
+export function playMetalTap() {
+  if (!metalTapBuffer || soundsMuted) return;
+  const ctx = getAudioContext();
+  if (ctx.state === "suspended") ctx.resume();
+  const source = ctx.createBufferSource();
+  source.buffer = metalTapBuffer;
+  source.connect(ctx.destination);
+  source.start(0);
+}
+
 const continueSfx = new Audio(continueSound);
 const enterSfx = new Audio(enterSound);
 

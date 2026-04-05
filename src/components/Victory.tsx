@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { images, audio, stopAllVoices, stopBackgroundMusic, startBackgroundMusic } from "../assets";
+import { images, audio, stopAllVoices, stopBackgroundMusic, startBackgroundMusic, playExplosion, playMetalTap } from "../assets";
 import Sparkles from "./Sparkles";
 import SunRays from "./SunRays";
 import Clouds from "./Clouds";
@@ -337,8 +337,7 @@ export default function Victory() {
     powerClip.onended = () => {
       audio.electricity.pause();
       audio.electricity.loop = false;
-      audio.explosion.currentTime = 0;
-      audio.explosion.play();
+      playExplosion();
       setFadeDuration(0);
       setFading(true);
     };
@@ -350,12 +349,10 @@ export default function Victory() {
 
     if (phase === "waiting1") {
       // Just tap sound, wait for timer
-      audio.metalTap.currentTime = 0;
-      audio.metalTap.play();
+      playMetalTap();
     } else if (phase === "waiting2") {
       // Click registered — if 3s already passed, play accept-2
-      audio.metalTap.currentTime = 0;
-      audio.metalTap.play();
+      playMetalTap();
       wait2ClickedRef.current = true;
       if (wait2TimerDoneRef.current) {
         acceptPhaseRef.current = "playing2";
@@ -373,8 +370,7 @@ export default function Victory() {
       startPowerUp();
     } else {
       // playing1, playing2, waiting3, playing3 — tap sound but no action
-      audio.metalTap.currentTime = 0;
-      audio.metalTap.play();
+      playMetalTap();
     }
   }, [scene, fading, poweringUp, playAccept, startPowerUp]);
 
