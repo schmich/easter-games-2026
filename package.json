@@ -1,7 +1,7 @@
 {
-  "name": "2026-easter-games",
+  "name": "buggsy-easter-games",
   "version": "1.0.0",
-  "description": "2026 Easter Games",
+  "description": "Buggsy's Easter Games",
   "type": "module",
   "private": true,
   "scripts": {

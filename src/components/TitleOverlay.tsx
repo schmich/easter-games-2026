@@ -175,14 +175,14 @@ export default function TitleOverlay({ isOpen, onDismiss, onLoaded }: TitleOverl
               <div className={`w-full overflow-hidden transition-opacity duration-250 flex justify-center ${
                 showButton ? "opacity-100" : "opacity-0"
               }`}>
-                <img src={images.title} alt="2026 Easter Games" className="w-[384px] max-w-none shrink-0" />
+                <img src={images.title} alt="Buggsy's Easter Games" className="w-[384px] max-w-none shrink-0" />
               </div>
               <div className={`flex flex-col items-center transition-opacity duration-250 -mx-8 !overflow-visible ${
                 showButton ? "opacity-100" : "opacity-0"
               }`}>
                 <div className="relative flex justify-center -mt-[98px]" style={{ marginLeft: "-70px", marginRight: "-70px" }}>
                   <div className="relative w-[520px] max-w-[110dvw]">
-                    <img src={images.banner} alt="The 2026 Easter Games" className="w-full" />
+                    <img src={images.banner} alt="Buggsy's Easter Games" className="w-full" />
                     <Sparkles active={showButton} />
                   </div>
                 </div>
