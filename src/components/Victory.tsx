@@ -109,12 +109,12 @@ export default function Victory() {
         // Now safe to remove brightness overlay — screen is black
         setPoweringUp(false);
         setVisibleOrbCount(3);
-        // Hold on black for 4s, then fade in to note
+        // Hold on black for 6s, then fade in to note
         setTimeout(() => {
           setScene("note");
           setFadeDuration(4000);
           setSceneVisible(true);
-        }, 4000);
+        }, 6000);
       }
     } else {
       // Scene is now visible, fade is done
@@ -170,8 +170,16 @@ export default function Victory() {
   useEffect(() => {
     if (!poweringUp) return;
     let lastOrbCount = 3;
+    let concernPlayed = false;
     const tick = () => {
       const p = Math.min(1, audio.victoryPoweringUp.currentTime / POWER_UP_DURATION);
+
+      // Play concern clip at 10s
+      if (!concernPlayed && audio.victoryPoweringUp.currentTime >= 3) {
+        concernPlayed = true;
+        audio.buggsyVictoryConcern.currentTime = 0;
+        audio.buggsyVictoryConcern.play();
+      }
 
       // Orb count: linear 3 → 26
       const orbCount = Math.min(26, 3 + Math.round(p * 23));
@@ -194,7 +202,7 @@ export default function Victory() {
       const brightness = 1 + 5 * p * p * p;
       if (brightnessOverlayRef.current) {
         brightnessOverlayRef.current.style.backdropFilter = `brightness(${brightness})`;
-        brightnessOverlayRef.current.style.webkitBackdropFilter = `brightness(${brightness})`;
+        (brightnessOverlayRef.current.style as unknown as Record<string, string>).webkitBackdropFilter = `brightness(${brightness})`;
       }
 
       if (p < 1) {
