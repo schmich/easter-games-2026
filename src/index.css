@@ -282,6 +282,20 @@ body {
   }
 }
 
+@keyframes orb-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes swirl-ring {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes peep-pulse {
   0%, 100% {
     transform: scale(1);
