@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
-import { images, audio, stopAllVoices } from "../assets";
+import { images, audio, stopAllVoices, stopBackgroundMusic } from "../assets";
 import Sparkles from "./Sparkles";
 import SunRays from "./SunRays";
+import Clouds from "./Clouds";
 
 type Scene = "buggsy" | "peep" | "note";
 
@@ -20,6 +21,7 @@ export default function Victory() {
     clip.onended = () => {
       setFadeDuration(4000);
       setFading(true);
+      stopBackgroundMusic(4000);
     };
     return () => {
       clip.onended = null;
@@ -45,6 +47,19 @@ export default function Victory() {
     if (fading) setSceneVisible(false);
   }, [fading]);
 
+  // Scene 2: Loop magic sound while peep scene is active
+  useEffect(() => {
+    if (scene !== "peep") return;
+    const clip = audio.magic;
+    clip.loop = true;
+    clip.currentTime = 0;
+    clip.play();
+    return () => {
+      clip.pause();
+      clip.loop = false;
+    };
+  }, [scene]);
+
   // Scene 3: Play note audio when scene is fully visible (fade complete)
   useEffect(() => {
     if (scene !== "note" || fading || !sceneVisible) return;
@@ -57,6 +72,17 @@ export default function Victory() {
     if (scene !== "peep" || fading) return;
     setFadeDuration(2000);
     setFading(true);
+    // Fade magic audio out over 2s
+    const clip = audio.magic;
+    const startVolume = clip.volume;
+    const steps = 30;
+    const interval = 2000 / steps;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      clip.volume = Math.max(0, startVolume * (1 - step / steps));
+      if (step >= steps) clearInterval(timer);
+    }, interval);
   }, [scene, fading]);
 
   return (
@@ -64,7 +90,9 @@ export default function Victory() {
       style={{
         background: scene === "peep"
           ? "radial-gradient(circle, #e8b830 0%, #b8860b 40%, #7a5a0a 100%)"
-          : scene === "note" ? "#1a1a2e" : "black",
+          : scene === "note"
+          ? "linear-gradient(180deg, #f0e6f6 0%, #e8f5e9 40%, #fef9e7 100%)"
+          : "black",
       }}
     >
       {/* Scene content */}
@@ -83,7 +111,7 @@ export default function Victory() {
           {/* Pulsing gold background glow */}
           <div className="fixed inset-0 animate-shimmer" style={{ background: "radial-gradient(circle, rgba(255,248,225,0.4) 0%, rgba(246,196,67,0.2) 50%, transparent 80%)" }} />
           <SunRays />
-          <div className="relative z-10 animate-egg-pulse">
+          <div className="relative z-10" style={{ animation: "peep-pulse 4s ease-in-out infinite" }}>
             <img
               src={images.peepGolden}
               alt=""
@@ -95,14 +123,27 @@ export default function Victory() {
       )}
 
       {scene === "note" && (
-        <div className="flex flex-col items-center z-10 px-8 max-w-lg">
-          <p className="text-[#e8d5f0] text-2xl text-center leading-relaxed italic">
-            "You proved yourself in my games. Now prove yourself in the field. Two eggs are still out there. The hunt isn't over."
-          </p>
-          <p className="text-[#b07fd0] text-xl mt-6 text-right w-full">
-            — B.B.
-          </p>
-        </div>
+        <>
+          <Clouds inline />
+          <img
+            src={images.grass}
+            alt=""
+            className="absolute bottom-0 left-0 w-full pointer-events-none z-[11]"
+          />
+          <div className="fixed inset-0 flex flex-col items-center z-10 overflow-y-auto" style={{ paddingTop: "0" }}>
+            <img
+              src={images.victoryDust}
+              alt=""
+              className="w-[320px] max-w-[80vw] relative z-0 mt-4"
+            />
+            <img
+              src={images.victoryNote}
+              alt=""
+              className="max-w-[95dvw] relative z-10 -mt-20"
+              style={{ filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.85))" }}
+            />
+          </div>
+        </>
       )}
 
       {/* Fade overlay */}

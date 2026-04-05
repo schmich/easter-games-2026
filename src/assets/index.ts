@@ -17,6 +17,8 @@ import eggBorder from "./egg-border.webp";
 import buggsyConneggtionsWinImg from "./buggsy-coneggtions-win.webp";
 import loadingEgg from "./loading-egg.webp";
 import peepGolden from "./peep-golden.webp";
+import victoryDust from "./victory-dust.webp";
+import victoryNote from "./victory-note.webp";
 import cloud1 from "./cloud-1.webp";
 import cloud2 from "./cloud-2.webp";
 import cloud3 from "./cloud-3.webp";
@@ -61,6 +63,7 @@ import error from "./error.mp3";
 import bell from "./bell.mp3";
 import clap from "./clap.mp3";
 import buggsyVictory from "./buggsy-victory-speech.mp3";
+import magic from "./magic.mp3";
 import buggsyVictoryNote from "./buggsy-victory-note.mp3";
 import buggsyLoseMad from "./buggsy-lose-mad.mp3";
 import buggsyLoseEggShortage from "./buggsy-lose-egg-shortage.mp3";
@@ -92,6 +95,8 @@ export const images = {
   buggsyConneggtionsWin: buggsyConneggtionsWinImg,
   loadingEgg,
   peepGolden,
+  victoryDust,
+  victoryNote,
   clouds: [cloud1, cloud2, cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10],
 } as const;
 
@@ -133,6 +138,7 @@ export const audio = {
   buggsyConneggtions3: new Audio(buggsyConneggtions3),
   buggsyVictory: new Audio(buggsyVictory),
   buggsyVictoryNote: new Audio(buggsyVictoryNote),
+  magic: new Audio(magic),
 } as const;
 
 export function stopAllVoices() {
@@ -163,6 +169,23 @@ export function startBackgroundMusic() {
   if (bgStarted) return;
   bgStarted = true;
   playNextBgTrack();
+}
+
+export function stopBackgroundMusic(fadeDuration = 3000) {
+  const track = bgTracks[bgTrackIndex % bgTracks.length];
+  const startVolume = track.volume;
+  const steps = 30;
+  const interval = fadeDuration / steps;
+  let step = 0;
+  const timer = setInterval(() => {
+    step++;
+    track.volume = Math.max(0, startVolume * (1 - step / steps));
+    if (step >= steps) {
+      clearInterval(timer);
+      track.pause();
+      track.onended = null;
+    }
+  }, interval);
 }
 
 // Mute state — declared early so playClick/playFailedAudio can reference it

@@ -1,8 +1,15 @@
-export default function SunRays() {
+interface SunRaysProps {
+  origin?: "center" | "top";
+}
+
+export default function SunRays({ origin = "center" }: SunRaysProps) {
+  const posClass = origin === "top"
+    ? "absolute left-1/2 top-0"
+    : "absolute left-1/2 top-1/2";
   return (
     <>
       <div
-        className="absolute left-1/2 top-1/2 pointer-events-none animate-sun-rays"
+        className={`${posClass} pointer-events-none animate-sun-rays`}
         style={{
           width: "200vmax",
           height: "200vmax",
@@ -27,7 +34,7 @@ export default function SunRays() {
         }}
       />
       <div
-        className="absolute left-1/2 top-1/2 pointer-events-none animate-sun-rays animate-shimmer"
+        className={`${posClass} pointer-events-none animate-sun-rays animate-shimmer`}
         style={{
           width: "200vmax",
           height: "200vmax",
@@ -54,7 +61,7 @@ export default function SunRays() {
         }}
       />
       <div
-        className="absolute left-1/2 top-1/2 pointer-events-none animate-shimmer"
+        className={`${posClass} pointer-events-none animate-shimmer`}
         style={{
           width: "500px",
           height: "500px",

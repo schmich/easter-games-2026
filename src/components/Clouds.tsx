@@ -77,7 +77,7 @@ function findNonOverlappingYPct(existing: Cloud[], h: number, maxAttempts = 20):
   return randomYPct();
 }
 
-export default function Clouds() {
+export default function Clouds({ inline }: { inline?: boolean } = {}) {
   const [clouds, setClouds] = useState<Cloud[]>([]);
   const [ready, setReady] = useState(false);
   const cloudsRef = useRef(clouds);
@@ -165,7 +165,7 @@ export default function Clouds() {
     return () => cancelAnimationFrame(frameRef.current);
   }, [ready, spawnCloud]);
 
-  return createPortal(
+  const content = (
     <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
       {clouds.map((c) => (
         <img
@@ -181,7 +181,8 @@ export default function Clouds() {
           }}
         />
       ))}
-    </div>,
-    document.getElementById("root")!.parentElement!
+    </div>
   );
+
+  return inline ? content : createPortal(content, document.getElementById("root")!.parentElement!);
 }
