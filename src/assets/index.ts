@@ -76,6 +76,8 @@ import buggsyVictoryAccept3 from "./buggsy-victory-accept-3.mp3";
 import explosion from "./explosion.mp3";
 import cuckoo from "./cuckoo.mp3";
 import electricity from "./electricity.mp3";
+import metalTap from "./metal-tap.mp3";
+import gong from "./gong.mp3";
 import buggsyLoseMad from "./buggsy-lose-mad.mp3";
 import buggsyLoseEggShortage from "./buggsy-lose-egg-shortage.mp3";
 import buggsyLoseSecondChances from "./buggsy-lose-second-chances.mp3";
@@ -161,6 +163,8 @@ export const audio = {
   explosion: new Audio(explosion),
   cuckoo: new Audio(cuckoo),
   electricity: new Audio(electricity),
+  metalTap: new Audio(metalTap),
+  gong: new Audio(gong),
 } as const;
 
 export function stopAllVoices() {

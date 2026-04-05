@@ -344,11 +344,13 @@ export default function Victory() {
   }, []);
 
   const handlePeepTap = useCallback(() => {
-    if (scene !== "peep" || fading || poweringUp) return;
+    if (scene !== "peep" || poweringUp) return;
     const phase = acceptPhaseRef.current;
 
     if (phase === "waiting1") {
       // Skip 6s wait, play accept-1 immediately
+      audio.metalTap.currentTime = 0;
+      audio.metalTap.play();
       if (acceptTimerRef.current) clearTimeout(acceptTimerRef.current);
       acceptPhaseRef.current = "playing1";
       playAccept(audio.buggsyVictoryAccept1, "waiting2", () => {
@@ -369,6 +371,8 @@ export default function Victory() {
       });
     } else if (phase === "waiting2") {
       // Click registered — if 3s already passed, play accept-2
+      audio.metalTap.currentTime = 0;
+      audio.metalTap.play();
       wait2ClickedRef.current = true;
       if (wait2TimerDoneRef.current) {
         acceptPhaseRef.current = "playing2";
@@ -380,9 +384,14 @@ export default function Victory() {
         });
       }
     } else if (phase === "ready") {
+      audio.gong.currentTime = 0;
+      audio.gong.play();
       startPowerUp();
+    } else {
+      // playing1, playing2, waiting3, playing3 — tap sound but no action
+      audio.metalTap.currentTime = 0;
+      audio.metalTap.play();
     }
-    // playing1, playing2, waiting3, playing3 — ignore clicks
   }, [scene, fading, poweringUp, playAccept, startPowerUp]);
 
   return (
