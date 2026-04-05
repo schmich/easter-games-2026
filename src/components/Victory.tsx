@@ -76,6 +76,7 @@ export default function Victory() {
   const [poweringUp, setPoweringUp] = useState(false);
   const [showGift, setShowGift] = useState(false);
   const [visibleOrbCount, setVisibleOrbCount] = useState(3);
+  const [shaking, setShaking] = useState(false);
 
   const brightnessOverlayRef = useRef<HTMLDivElement>(null);
   const orbContainerRef = useRef<HTMLDivElement>(null);
@@ -368,6 +369,7 @@ export default function Victory() {
     } else if (phase === "ready") {
       audio.gong.currentTime = 0;
       audio.gong.play();
+      setShaking(true);
       startPowerUp();
     } else {
       // playing1, playing2, waiting3, playing3 — tap sound but no action
@@ -412,7 +414,8 @@ export default function Victory() {
           {/* Pulsing gold background glow */}
           <div className="fixed inset-0 animate-shimmer" style={{ background: "radial-gradient(circle, rgba(255,248,225,0.4) 0%, rgba(246,196,67,0.2) 50%, transparent 80%)" }} />
           <SunRays />
-          <div ref={orbContainerRef} className="relative z-10" style={{ animationName: "peep-pulse", animationDuration: "4s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}>
+          <div className="relative z-10" style={shaking ? { animationName: "peep-shake", animationDuration: "1.5s", animationTimingFunction: "ease-out", animationIterationCount: "1" } : undefined}>
+          <div ref={orbContainerRef} className="relative" style={{ animationName: "peep-pulse", animationDuration: "4s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}>
             {poweringUp && SWIRL_ORBS.slice(0, visibleOrbCount).filter((o) => !o.front).map((orb, i) => (
               <div key={`b${i}`} className="absolute inset-0 pointer-events-none" style={{
                 animationName: "swirl-ring, orb-fade-in",
@@ -455,6 +458,7 @@ export default function Victory() {
                 }} />
               </div>
             ))}
+          </div>
           </div>
         </div>
       )}

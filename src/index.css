@@ -305,6 +305,21 @@ body {
   }
 }
 
+@keyframes peep-shake {
+  0% { transform: translateX(-6px) rotate(-2deg); }
+  5% { transform: translateX(6px) rotate(2deg); }
+  10% { transform: translateX(-5px) rotate(-1.5deg); }
+  15% { transform: translateX(5px) rotate(1.5deg); }
+  20% { transform: translateX(-4px) rotate(-1deg); }
+  25% { transform: translateX(4px) rotate(1deg); }
+  30% { transform: translateX(-3px) rotate(-0.8deg); }
+  40% { transform: translateX(2px) rotate(0.5deg); }
+  50% { transform: translateX(-1px) rotate(-0.3deg); }
+  60% { transform: translateX(1px) rotate(0.2deg); }
+  75% { transform: translateX(0) rotate(0); }
+  100% { transform: translateX(0) rotate(0); }
+}
+
 @keyframes peep-pulse {
   0%, 100% {
     transform: scale(1);
